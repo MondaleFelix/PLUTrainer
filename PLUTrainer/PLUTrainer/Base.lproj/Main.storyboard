@@ -149,7 +149,10 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="edO-DH-xzy">
                                                 <rect key="frame" x="0.0" y="0.0" width="107.5" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Del"/>
+                                                <connections>
+                                                    <action selector="deleteButtonPressed:" destination="lMi-av-ES1" eventType="touchUpInside" id="4CK-ip-1Ah"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NRz-fp-lVK">
                                                 <rect key="frame" x="133.5" y="0.0" width="108" height="30"/>
@@ -160,7 +163,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9n-YA-c1T">
                                                 <rect key="frame" x="267.5" y="0.0" width="107.5" height="30"/>
-                                                <state key="normal" title="Button"/>
+                                                <state key="normal" title="Enter"/>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -177,6 +180,11 @@
                         <viewLayoutGuide key="safeArea" id="QX4-Tm-Aek"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 1" image="keyboard" catalog="system" id="9mV-yu-0Tw"/>
+                    <connections>
+                        <outlet property="foodImage" destination="36X-KK-SEk" id="QNL-eI-Stg"/>
+                        <outlet property="foodLabel" destination="HTN-wT-bXS" id="jOu-ly-zuf"/>
+                        <outlet property="pluLabel" destination="kOc-jj-3lK" id="2Vv-Bp-pSU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiU-Xj-SEG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="W6Z-F6-oXR" userLabel="Exit" sceneMemberID="exit"/>

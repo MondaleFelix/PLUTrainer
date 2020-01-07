@@ -10,6 +10,13 @@ import UIKit
 
 class ViewController: UIViewController {
 
+
+    @IBOutlet weak var foodImage: UIImageView!
+    @IBOutlet weak var foodLabel: UILabel!
+    @IBOutlet weak var pluLabel: UILabel!
+    
+    var userInput = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -17,6 +24,18 @@ class ViewController: UIViewController {
     
     
     @IBAction func keyboardButtonPressed(_ sender: UIButton) {
-        print(sender.currentTitle!)
+        userInput.append(sender.currentTitle!)
+        updateUI()
     }
+    
+
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        userInput.popLast()
+        updateUI()
+    }
+    
+    func updateUI(){
+        pluLabel.text = userInput.joined()
+    }
+
 }
