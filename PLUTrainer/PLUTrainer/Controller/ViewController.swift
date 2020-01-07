@@ -19,13 +19,17 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
         // Do any additional setup after loading the view.
     }
     
     
     @IBAction func keyboardButtonPressed(_ sender: UIButton) {
-        userInput.append(sender.currentTitle!)
-        updateUI()
+        if pluLabel.text!.count < 5 {
+            userInput.append(sender.currentTitle!)
+                updateUI()
+        }
+
     }
     
 
