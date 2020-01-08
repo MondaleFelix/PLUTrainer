@@ -15,31 +15,33 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var pluLabel: UILabel!
     
-    var userInput = [String]()
+    var quiz = Quiz()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
-        // Do any additional setup after loading the view.
     }
     
     
     @IBAction func keyboardButtonPressed(_ sender: UIButton) {
+        
+        let numPressed = sender.currentTitle!
+        
         if pluLabel.text!.count < 5 {
-            userInput.append(sender.currentTitle!)
-                updateUI()
+            quiz.addNumber(numPressed)
+            updateUI()
         }
 
     }
     
 
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        userInput.popLast()
+        quiz.deleteNumber()
         updateUI()
     }
     
     func updateUI(){
-        pluLabel.text = userInput.joined()
+        pluLabel.text = quiz.getUserInput()
     }
 
 }
