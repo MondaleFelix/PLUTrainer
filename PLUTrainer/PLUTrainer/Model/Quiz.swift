@@ -11,10 +11,10 @@ import Foundation
 struct Quiz {
     
     var quiz = [
-        Produce(name: "banana", plu: 94011),
-        Produce(name: "lime", plu: 94048),
-        Produce(name: "lemon", plu: 94958),
-        Produce(name: "orange", plu: 93107)
+        Produce(name: "banana", plu: "94011"),
+        Produce(name: "lime", plu: "94048"),
+        Produce(name: "lemon", plu: "94958"),
+        Produce(name: "orange", plu: "93107")
     ]
     
     var userInput = [String]()
@@ -27,8 +27,28 @@ struct Quiz {
         self.userInput.popLast()
     }
     
+    mutating func clearUserInput(){
+        self.userInput.removeAll()
+    }
+    
+    mutating func checkAnswer(_ userAnswer:String) -> Bool {
+        
+        if userAnswer == quiz[0].plu {
+            self.quiz.removeFirst()
+            return true
+        } else {
+            self.quiz.append(self.quiz.removeFirst())
+            return false
+        }
+    }
+    
     func getUserInput() -> String {
         return userInput.joined()
     }
+    
+    func getFood() -> String {
+        return quiz[0].name
+    }
+    
     
 }

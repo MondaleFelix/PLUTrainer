@@ -164,6 +164,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9n-YA-c1T">
                                                 <rect key="frame" x="267.5" y="0.0" width="107.5" height="30"/>
                                                 <state key="normal" title="Enter"/>
+                                                <connections>
+                                                    <action selector="submitButtonPressed:" destination="lMi-av-ES1" eventType="touchUpInside" id="ayY-bT-LeJ"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

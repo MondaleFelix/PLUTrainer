@@ -10,9 +10,9 @@ import Foundation
 
 struct Produce {
     let name: String
-    let plu: Int
+    let plu: String
     
-    init(name: String, plu: Int){
+    init(name: String, plu: String){
         self.name = name
         self.plu = plu
     }

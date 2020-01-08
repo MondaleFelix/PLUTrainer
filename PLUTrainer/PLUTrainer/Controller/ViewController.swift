@@ -25,10 +25,11 @@ class ViewController: UIViewController {
     
     @IBAction func keyboardButtonPressed(_ sender: UIButton) {
         
-        let numPressed = sender.currentTitle!
+        let numberPressed = sender.currentTitle!
         
+        // Limits the PLU Label to 5 characters
         if pluLabel.text!.count < 5 {
-            quiz.addNumber(numPressed)
+            quiz.addNumber(numberPressed)
             updateUI()
         }
 
@@ -40,8 +41,31 @@ class ViewController: UIViewController {
         updateUI()
     }
     
-    func updateUI(){
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        
+        let userAnswer = pluLabel.text!
+        
+        let correctAnswer = quiz.checkAnswer(userAnswer)
+        
+        if correctAnswer {
+            self.view.backgroundColor = .green
+        } else {
+            self.view.backgroundColor = .red
+        }
+        
+        quiz.clearUserInput()
+        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
+    }
+    
+    @objc func updateUI(){
+        // Grabs the from produce from current quiz question
+        let produce = quiz.getFood()
+        
+        
         pluLabel.text = quiz.getUserInput()
+        foodLabel.text = produce
+        foodImage.image = UIImage(named: produce)
+        self.view.backgroundColor = .white
     }
 
 }
