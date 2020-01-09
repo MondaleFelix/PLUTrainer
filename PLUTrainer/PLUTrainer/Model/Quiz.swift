@@ -49,10 +49,17 @@ class Quiz {
     }
     
     func getFood() -> String {
-        return quiz[0].name
+        return quiz[0].name 
     }
     
-    func deleteProduce(_ index: Int){
-        self.quiz.remove(at: index)
+    func deleteProduce(_ produce: Produce){
+        
+        if let deleteIndex = self.quiz.firstIndex(of: produce) {
+            self.quiz.remove(at: deleteIndex)
+        }
+        
+        
     }
+    
+    
 }

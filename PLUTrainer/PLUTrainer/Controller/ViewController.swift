@@ -15,10 +15,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var pluLabel: UILabel!
     
+
     var quiz = Quiz.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateUI()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         updateUI()
     }
     

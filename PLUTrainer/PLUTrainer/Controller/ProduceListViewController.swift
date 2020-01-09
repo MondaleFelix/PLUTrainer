@@ -50,8 +50,11 @@ class ProduceListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        let produceItem = produceList[indexPath.row]
+        
         produceList.remove(at: indexPath.row)
-        data.deleteProduce(indexPath.row)
+        data.deleteProduce(produceItem)
         tableView.reloadData()
         
     }

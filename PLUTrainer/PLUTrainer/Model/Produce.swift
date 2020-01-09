@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Produce {
+struct Produce : Equatable {
     let name: String
     let plu: String
     
