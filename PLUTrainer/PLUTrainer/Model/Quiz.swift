@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Quiz {
+class Quiz {
     
     var quiz = [
         Produce(name: "banana", plu: "94011"),
@@ -19,19 +19,19 @@ struct Quiz {
     
     var userInput = [String]()
 
-    mutating func addNumber(_ number: String) {
+    func addNumber(_ number: String) {
         self.userInput.append(number)
     }
  
-    mutating func deleteNumber(){
+    func deleteNumber(){
         self.userInput.popLast()
     }
     
-    mutating func clearUserInput(){
+    func clearUserInput(){
         self.userInput.removeAll()
     }
     
-    mutating func checkAnswer(_ userAnswer:String) -> Bool {
+    func checkAnswer(_ userAnswer:String) -> Bool {
         
         if userAnswer == quiz[0].plu {
             self.quiz.removeFirst()

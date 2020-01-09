@@ -10,13 +10,13 @@ import UIKit
 
 class ProduceListViewController: UITableViewController {
     
-    var items: [Produce]
+    var produceItems: [Produce]
     
     required init?(coder aDecoder: NSCoder) {
-        items = [Produce]()
-        let apple = Produce(name: "apple", plu: "90000")
-        items.append(apple)
+        let data = Quiz()
+        produceItems = data.quiz
         
+
         super.init(coder: aDecoder)
     }
     
@@ -30,7 +30,7 @@ class ProduceListViewController: UITableViewController {
     
     // Determines the number of cells to return
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return produceItems.count
 
     }
     
@@ -39,7 +39,7 @@ class ProduceListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProduceItem", for: indexPath)
-        let item = items[indexPath.row]
+        let item = produceItems[indexPath.row]
         
         
         let label = cell.viewWithTag(1000) as! UILabel
