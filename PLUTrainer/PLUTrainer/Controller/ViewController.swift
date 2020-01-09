@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var pluLabel: UILabel!
     
-    var quiz = Quiz()
+    var quiz = Quiz.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +60,6 @@ class ViewController: UIViewController {
     @objc func updateUI(){
         // Grabs the from produce from current quiz question
         let produce = quiz.getFood()
-        
         
         pluLabel.text = quiz.getUserInput()
         foodLabel.text = produce

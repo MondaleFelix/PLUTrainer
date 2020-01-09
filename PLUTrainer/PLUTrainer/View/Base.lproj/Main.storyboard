@@ -40,7 +40,7 @@
             </objects>
             <point key="canvasLocation" x="86" y="295"/>
         </scene>
-        <!--Produce List View Controller-->
+        <!--PLU Codes-->
         <scene sceneID="arf-Ep-4Bd">
             <objects>
                 <tableViewController id="k5h-RI-IBD" customClass="ProduceListViewController" customModule="PLUTrainer" customModuleProvider="target" sceneMemberID="viewController">
@@ -72,8 +72,8 @@
                             <outlet property="delegate" destination="k5h-RI-IBD" id="Qc7-YI-Q4X"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="uiZ-h1-Ldn">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="RhA-t8-ulU">
+                    <navigationItem key="navigationItem" title="PLU Codes" id="uiZ-h1-Ldn">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RhA-t8-ulU">
                             <connections>
                                 <segue destination="tgh-Sb-Oh3" kind="show" id="dmz-2d-c76"/>
                             </connections>
@@ -94,7 +94,9 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="uzm-ff-gBz"/>
                     </view>
-                    <navigationItem key="navigationItem" id="GGF-mc-3Vr"/>
+                    <navigationItem key="navigationItem" id="GGF-mc-3Vr">
+                        <barButtonItem key="backBarButtonItem" title="dadsadadA" id="s65-9J-bJ6"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmD-z7-0QZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

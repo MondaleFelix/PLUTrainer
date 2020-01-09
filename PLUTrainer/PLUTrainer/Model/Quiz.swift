@@ -10,6 +10,8 @@ import Foundation
 
 class Quiz {
     
+    static let sharedInstance = Quiz()
+    
     var quiz = [
         Produce(name: "banana", plu: "94011"),
         Produce(name: "lime", plu: "94048"),
@@ -50,5 +52,7 @@ class Quiz {
         return quiz[0].name
     }
     
-    
+    func deleteProduce(_ index: Int){
+        self.quiz.remove(at: index)
+    }
 }
