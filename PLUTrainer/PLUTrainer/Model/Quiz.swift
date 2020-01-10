@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 class Quiz {
+    
     
     static let sharedInstance = Quiz()
     
@@ -49,7 +51,7 @@ class Quiz {
     }
     
     func getFood() -> String {
-        return quiz[0].name 
+        return quiz[0].name
     }
     
     func deleteProduce(_ produce: Produce){
@@ -57,8 +59,10 @@ class Quiz {
         if let deleteIndex = self.quiz.firstIndex(of: produce) {
             self.quiz.remove(at: deleteIndex)
         }
-        
-        
+    }
+    
+    func addProduce(_ produce: Produce){
+        self.quiz.append(produce)
     }
     
     

@@ -75,7 +75,7 @@
                     <navigationItem key="navigationItem" title="PLU Codes" id="uiZ-h1-Ldn">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="RhA-t8-ulU">
                             <connections>
-                                <segue destination="tgh-Sb-Oh3" kind="show" id="dmz-2d-c76"/>
+                                <segue destination="tgh-Sb-Oh3" kind="show" id="H40-7g-1lw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -84,19 +84,70 @@
             </objects>
             <point key="canvasLocation" x="85.599999999999994" y="1098.8005997001501"/>
         </scene>
-        <!--View Controller-->
+        <!--Add Produce View Controller-->
         <scene sceneID="r28-Oy-XRi">
             <objects>
-                <viewController id="tgh-Sb-Oh3" sceneMemberID="viewController">
+                <viewController id="tgh-Sb-Oh3" customClass="AddProduceViewController" customModule="PLUTrainer" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="56O-qM-PW1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nAU-LW-QKV">
+                                <rect key="frame" x="139" y="414" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yeQ-7b-joy">
+                                <rect key="frame" x="139" y="507" width="97" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Produce Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntx-q5-vID">
+                                <rect key="frame" x="130" y="373" width="114" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PLU Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LGJ-Qh-BLk">
+                                <rect key="frame" x="149" y="478" width="77" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iIF-8t-qE5">
+                                <rect key="frame" x="67" y="75" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n3x-zJ-nAU">
+                                <rect key="frame" x="143" y="243" width="89" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Select Image"/>
+                                <connections>
+                                    <action selector="selectImagePressed:" destination="tgh-Sb-Oh3" eventType="touchUpInside" id="G2Z-JB-S1o"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="uzm-ff-gBz"/>
                     </view>
                     <navigationItem key="navigationItem" id="GGF-mc-3Vr">
                         <barButtonItem key="backBarButtonItem" title="dadsadadA" id="s65-9J-bJ6"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="JW0-b0-Llw">
+                            <connections>
+                                <action selector="saveButtonPressed:" destination="tgh-Sb-Oh3" id="az5-GO-Hxv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="codeTextField" destination="yeQ-7b-joy" id="SFJ-qp-j9h"/>
+                        <outlet property="nameTextField" destination="nAU-LW-QKV" id="0Km-3r-cKN"/>
+                        <outlet property="produceImageView" destination="iIF-8t-qE5" id="Bgp-to-2db"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bmD-z7-0QZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

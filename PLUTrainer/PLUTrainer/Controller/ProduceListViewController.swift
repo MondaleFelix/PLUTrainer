@@ -29,7 +29,10 @@ class ProduceListViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+            tableView.reloadData()
+
+    }
     // Protocol Methods
     // Determines the number of cells to return
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,8 +56,8 @@ class ProduceListViewController: UITableViewController {
         
         let produceItem = produceList[indexPath.row]
         
-        produceList.remove(at: indexPath.row)
         data.deleteProduce(produceItem)
+        produceList.remove(at: indexPath.row)
         tableView.reloadData()
         
     }
