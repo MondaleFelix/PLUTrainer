@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 
 struct Produce : Equatable {
-//    let image: UIImage
+    let image: UIImage
     let name: String
     let plu: String
     
-    init(name: String, plu: String){
-//        self.image = image
+    init(image: UIImage, name: String, plu: String){
+        self.image = image
         self.name = name
         self.plu = plu
     }

@@ -34,7 +34,7 @@ class AddProduceViewController: UIViewController {
         let code = codeTextField.text!
         let image = produceImageView.image!
         
-        let produce = Produce(name: name, plu: code)
+        let produce = Produce(image: image, name: name, plu: code)
         
         data.addProduce(produce)
         
@@ -50,7 +50,7 @@ class AddProduceViewController: UIViewController {
 extension AddProduceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             produceImageView.image = image
         }
         dismiss(animated: true, completion: nil)

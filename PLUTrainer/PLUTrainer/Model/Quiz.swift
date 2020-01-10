@@ -15,10 +15,10 @@ class Quiz {
     static let sharedInstance = Quiz()
     
     var quiz = [
-        Produce(name: "banana", plu: "94011"),
-        Produce(name: "lime", plu: "94048"),
-        Produce(name: "lemon", plu: "94958"),
-        Produce(name: "orange", plu: "93107")
+        Produce(image: UIImage.init(named: "banana")!, name: "banana", plu: "94011"),
+        Produce(image: UIImage.init(named: "lime")!, name: "lime", plu: "94048"),
+        Produce(image: UIImage.init(named: "lemon")!, name: "lemon", plu: "94958"),
+        Produce(image: UIImage.init(named: "orange")!, name: "orange", plu: "93107")
     ]
     
     var userInput = [String]()
@@ -50,8 +50,8 @@ class Quiz {
         return userInput.joined()
     }
     
-    func getFood() -> String {
-        return quiz[0].name
+    func getFood() -> Produce {
+        return quiz[0]
     }
     
     func deleteProduce(_ produce: Produce){

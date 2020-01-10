@@ -67,8 +67,8 @@ class ViewController: UIViewController {
         let produce = quiz.getFood()
         
         pluLabel.text = quiz.getUserInput()
-        foodLabel.text = produce
-        foodImage.image = UIImage(named: produce)
+        foodLabel.text = produce.name
+        foodImage.image = produce.image
         self.view.backgroundColor = .white
     }
 
