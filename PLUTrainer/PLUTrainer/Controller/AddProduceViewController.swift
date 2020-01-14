@@ -37,6 +37,7 @@ class AddProduceViewController: UIViewController {
         let produce = Produce(image: image, name: name, plu: code)
         
         data.addProduce(produce)
+
         
     }
     

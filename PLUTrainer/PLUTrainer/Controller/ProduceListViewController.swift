@@ -12,6 +12,9 @@ class ProduceListViewController: UITableViewController {
     
     var produceList: [Produce]
     
+    
+
+    
     let data = Quiz.sharedInstance
     
     
@@ -36,28 +39,31 @@ class ProduceListViewController: UITableViewController {
     // Protocol Methods
     // Determines the number of cells to return
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return produceList.count
+        return data.quiz.count
 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProduceItem", for: indexPath)
-        let item = produceList[indexPath.row]
+        let item = data.quiz[indexPath.row]
         
         
-        let label = cell.viewWithTag(1000) as! UILabel
-        label.text = item.name
+        let namelabel = cell.viewWithTag(1000) as! UILabel
+        namelabel.text = item.name
+        
+        let codeLabel = cell.viewWithTag(1001) as! UILabel
+        codeLabel.text = item.plu
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let produceItem = produceList[indexPath.row]
+        let produceItem = data.quiz[indexPath.row]
         
         data.deleteProduce(produceItem)
-        produceList.remove(at: indexPath.row)
+//        produceList.remove(at: indexPath.row)
         tableView.reloadData()
         
     }
