@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuizListViewController: UIViewController {
+class ViewController: UIViewController {
 
 
     @IBOutlet weak var foodImage: UIImageView!
@@ -17,7 +17,7 @@ class QuizListViewController: UIViewController {
     
 
     var quiz = Quiz.sharedInstance
-    
+    var pluList = ProduceList.sharedInstance
     override func viewDidLoad() {
         super.viewDidLoad()
         updateUI()
@@ -40,7 +40,11 @@ class QuizListViewController: UIViewController {
 
     }
     
-
+    @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
+        quiz.quiz = pluList.pluList
+        updateUI()
+    }
+    
     @IBAction func deleteButtonPressed(_ sender: UIButton) {
         quiz.deleteNumber()
         updateUI()
