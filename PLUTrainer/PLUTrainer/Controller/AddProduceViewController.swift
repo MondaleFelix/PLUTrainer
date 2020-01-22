@@ -11,7 +11,8 @@ import UIKit
 class AddProduceViewController: UIViewController {
     
     
-    let data = Quiz.sharedInstance
+    let data = ProduceList.sharedInstance
+    let quizList = Quiz.sharedInstance
     var imagePicker = UIImagePickerController()
     
     @IBOutlet weak var produceImageView: UIImageView!
@@ -37,7 +38,7 @@ class AddProduceViewController: UIViewController {
         let produce = Produce(image: image, name: name, plu: code)
         
         data.addProduce(produce)
-
+        quizList.addProduce(produce)
         
     }
     

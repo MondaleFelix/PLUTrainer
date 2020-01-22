@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class QuizListViewController: UIViewController {
 
 
     @IBOutlet weak var foodImage: UIImageView!

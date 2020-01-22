@@ -15,12 +15,12 @@ class ProduceListViewController: UITableViewController {
     
 
     
-    let data = Quiz.sharedInstance
-    
+    let data = ProduceList.sharedInstance
+    let quizList = Quiz.sharedInstance
     
     required init?(coder aDecoder: NSCoder) {
-        let data = Quiz.sharedInstance
-        produceList = data.quiz
+        let data = ProduceList.sharedInstance
+        produceList = data.pluList
         
         super.init(coder: aDecoder)
         
@@ -36,17 +36,19 @@ class ProduceListViewController: UITableViewController {
             tableView.reloadData()
 
     }
+    
+    
     // Protocol Methods
     // Determines the number of cells to return
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.quiz.count
+        return data.pluList.count
 
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProduceItem", for: indexPath)
-        let item = data.quiz[indexPath.row]
+        let item = data.pluList[indexPath.row]
         
         
         let namelabel = cell.viewWithTag(1000) as! UILabel
@@ -57,13 +59,14 @@ class ProduceListViewController: UITableViewController {
         
         return cell
     }
-    
+
+    // Enables swipe deletion 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
-        let produceItem = data.quiz[indexPath.row]
+        let produceItem = data.pluList[indexPath.row]
         
         data.deleteProduce(produceItem)
-//        produceList.remove(at: indexPath.row)
+        quizList.deleteProduce(produceItem)
         tableView.reloadData()
         
     }

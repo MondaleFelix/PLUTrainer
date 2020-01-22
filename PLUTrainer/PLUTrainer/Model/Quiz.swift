@@ -21,6 +21,8 @@ class Quiz {
         Produce(image: UIImage.init(named: "orange")!, name: "orange", plu: "93107")
     ]
     
+    
+    
     var userInput = [String]()
 
     func addNumber(_ number: String) {
@@ -53,6 +55,10 @@ class Quiz {
     func getFood() -> Produce {
         return quiz[0]
     }
+
+    func addProduce(_ produce: Produce){
+        self.quiz.append(produce)
+    }
     
     func deleteProduce(_ produce: Produce){
         
@@ -60,10 +66,5 @@ class Quiz {
             self.quiz.remove(at: deleteIndex)
         }
     }
-    
-    func addProduce(_ produce: Produce){
-        self.quiz.append(produce)
-    }
-    
     
 }
