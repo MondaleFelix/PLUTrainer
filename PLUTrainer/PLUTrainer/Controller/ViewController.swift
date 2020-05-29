@@ -11,16 +11,75 @@ import UIKit
 class ViewController: UIViewController {
 
 
-    @IBOutlet weak var foodImage: UIImageView!
-    @IBOutlet weak var foodLabel: UILabel!
-    @IBOutlet weak var pluLabel: UILabel!
+ //   @IBOutlet weak var foodImage: UIImageView!
+//    @IBOutlet weak var foodLabel: UILabel!
+//    @IBOutlet weak var pluLabel: UILabel!
     
+    let foodImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
+    let foodLabel: UILabel = {
+          let label = UILabel()
+          label.translatesAutoresizingMaskIntoConstraints = false
+          label.textAlignment = .center
+          return label
+      }()
+    
+    let pluLabel: UILabel = {
+             let label = UILabel()
+    
+             label.translatesAutoresizingMaskIntoConstraints = false
+             label.textAlignment = .center
+             return label
+         }()
 
+    
+    let stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 2
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fill
+        return stackView
+    }()
+    
+    
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateUI()
+        view.backgroundColor = .blue
+        
+        createStackView()
+        updateUI2()
+    }
+    
+    func createStackView() {
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(foodImage)
+        stackView.addArrangedSubview(foodLabel)
+        stackView.addArrangedSubview(pluLabel)
+        //stackView.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.65).isActive = true
+        //stackView.heightAnchor.constraint(equalTo: view.layoutMarginsGuide.heightAnchor, multiplier: 0.5).isActive = true
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        
+    }
+    
+    func updateUI2() {
+        let produce = quiz.getFood()
+                
+        pluLabel.text = quiz.getUserInput()
+        foodLabel.text = produce.name
+        foodImage.image = produce.image
+        self.view.backgroundColor = .white
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -70,10 +129,10 @@ class ViewController: UIViewController {
         // Grabs the from produce from current quiz question
         let produce = quiz.getFood()
         
-        pluLabel.text = quiz.getUserInput()
-        foodLabel.text = produce.name
-        foodImage.image = produce.image
-        self.view.backgroundColor = .white
+//        pluLabel.text = quiz.getUserInput()
+ //       foodLabel.text = produce.name
+ //       foodImage.image = produce.image
+//        self.view.backgroundColor = .white
     }
 
 }

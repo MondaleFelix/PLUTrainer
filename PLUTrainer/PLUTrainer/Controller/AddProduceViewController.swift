@@ -24,6 +24,7 @@ class AddProduceViewController: UIViewController {
 
         super.viewDidLoad()
         imagePicker.delegate = self
+        view.backgroundColor = .red
 
     }
     
@@ -39,7 +40,7 @@ class AddProduceViewController: UIViewController {
         
         data.addProduce(produce)
         quizList.addProduce(produce)
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func selectImagePressed(_ sender: UIButton) {
