@@ -88,15 +88,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func addDoneButtonOnKeyboard()
-    {
+    func addDoneButtonOnKeyboard() {
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:38, y: 100, width: 244, height: 30))
         doneToolbar.barStyle = UIBarStyle.default
         
+        let hide = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: nil, action: #selector(hideKeypad))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Enter", style: UIBarButtonItem.Style.done, target: self, action: #selector(doneButtonAction))
+        
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Check", style: UIBarButtonItem.Style.done, target: self, action: #selector(checkButtonTapped))
         
         var items = [UIBarButtonItem]()
+        items.append(hide)
         items.append(flexSpace)
         items.append(done)
         
@@ -105,10 +107,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.pluLabelInput.inputAccessoryView = doneToolbar
     }
     
-    @objc func doneButtonAction() {
-        self.pluLabelInput.resignFirstResponder()
+    @objc func checkButtonTapped() {
+        let userAnswer = pluLabel.text!
+        let correctAnswer = quiz.checkAnswer(userAnswer)
+        
+        if correctAnswer {
+            self.view.backgroundColor = .green
+        } else {
+            self.view.backgroundColor = .red
+        }
+        
     }
     
+    @objc func hideKeypad() {
+        pluLabelInput.resignFirstResponder()
+
+    }
     
     
     func createStackView() {
@@ -161,9 +175,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func submitButtonPressed(_ sender: UIButton) {
-        
         let userAnswer = pluLabel.text!
-        
         let correctAnswer = quiz.checkAnswer(userAnswer)
         
         if correctAnswer {
