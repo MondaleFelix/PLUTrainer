@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C09AAD724861B02003D6BE3 /* AddProduceViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */; };
 		6F4AD8C823D8FA3B00B94009 /* ProduceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4AD8C723D8FA3B00B94009 /* ProduceList.swift */; };
 		6F4DACA323C4BD6300AC99B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4DACA223C4BD6300AC99B1 /* ViewController.swift */; };
 		6F62B2E223C3E65600E88367 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F62B2E123C3E65600E88367 /* AppDelegate.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduceViewController2.swift; sourceTree = "<group>"; };
 		6F4AD8C723D8FA3B00B94009 /* ProduceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceList.swift; sourceTree = "<group>"; };
 		6F4DACA223C4BD6300AC99B1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6F62B2DE23C3E65600E88367 /* PLUTrainer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PLUTrainer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,6 +73,7 @@
 				6F4DACA223C4BD6300AC99B1 /* ViewController.swift */,
 				6FBEEA8E23C7657200F042D0 /* ProduceListViewController.swift */,
 				6FBEEA9023C904C300F042D0 /* AddProduceViewController.swift */,
+				2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F4DACA323C4BD6300AC99B1 /* ViewController.swift in Sources */,
+				2C09AAD724861B02003D6BE3 /* AddProduceViewController2.swift in Sources */,
 				6FBEEA8F23C7657200F042D0 /* ProduceListViewController.swift in Sources */,
 				6F4AD8C823D8FA3B00B94009 /* ProduceList.swift in Sources */,
 				6FBEEA9123C904C300F042D0 /* AddProduceViewController.swift in Sources */,
