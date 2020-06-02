@@ -79,7 +79,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        UIView.setAnimationsEnabled(false)
         pluLabelInput.becomeFirstResponder()
+ 
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {
@@ -95,7 +97,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let hide = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: nil, action: #selector(hideKeypad))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Check", style: UIBarButtonItem.Style.done, target: self, action: #selector(checkButtonTapped))
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Check", style: UIBarButtonItem.Style.done, target: self, action: #selector(submitButtonPressed))
         
         var items = [UIBarButtonItem]()
         items.append(hide)
@@ -174,7 +176,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         updateUI()
     }
     
-    @IBAction func submitButtonPressed(_ sender: UIButton) {
+    @objc func submitButtonPressed(_ sender: UIButton) {
         let userAnswer = pluLabel.text!
         let correctAnswer = quiz.checkAnswer(userAnswer)
         
@@ -184,6 +186,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.view.backgroundColor = .red
         }
         
+        self.pluLabelInput.text! = ""
+        
+        // TODO: Get this method to work
         quiz.clearUserInput()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
     }
@@ -192,10 +197,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         // Grabs the from produce from current quiz question
         let produce = quiz.getFood()
         
-        //        pluLabel.text = quiz.getUserInput()
-        //       foodLabel.text = produce.name
-        //       foodImage.image = produce.image
-        //        self.view.backgroundColor = .white
+        pluLabel.text = quiz.getUserInput()
+        foodLabel.text = produce.name
+        foodImage.image = produce.image
+        self.view.backgroundColor = .white
     }
     
 }
