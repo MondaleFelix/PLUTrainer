@@ -31,7 +31,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func createTabbar() -> UITabBarController {
         let tabbar = UITabBarController()
-        tabbar.viewControllers = [ViewController(), createAddProduceNC()]
+        let VC = ViewController()
+        VC.title = "Quiz"
+        VC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        let navVC = UINavigationController(rootViewController: VC)
+
+        tabbar.viewControllers = [navVC, createAddProduceNC()]
         return tabbar
     }
     
