@@ -21,9 +21,7 @@ class ProduceListViewController: UITableViewController {
     required init?(coder aDecoder: NSCoder) {
         let data = ProduceList.sharedInstance
         produceList = data.pluList
-        
         super.init(coder: aDecoder)
-        
     }
     
     override func viewDidLoad() {

@@ -15,18 +15,39 @@ class AddProduceViewController: UIViewController {
     let quizList = Quiz.sharedInstance
     var imagePicker = UIImagePickerController()
     
-    @IBOutlet weak var produceImageView: UIImageView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var codeTextField: UITextField!
-    
+    var produceImageView =  UIImageView()
+    var nameTextField =  UITextField()
+    var codeTextField = UITextField()
+    var stackView = UIStackView()
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        imagePicker.delegate = self
-        view.backgroundColor = .red
+        
+        view.backgroundColor = .white
+        configure()
+    }
+    
+    
+    private func configure(){
+        nameTextField.text = "Testing"
+        codeTextField.text = "Code testing"
+        print(stackView.arrangedSubviews)
+        view.addSubview(stackView)
+
+        NSLayoutConstraint.activate([
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+  
+        
+        ])
+        
+        
 
     }
+    
     
     
     
