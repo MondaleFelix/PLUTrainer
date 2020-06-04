@@ -9,105 +9,48 @@
 import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate {
-    // Just testing this out
-    
-    //   @IBOutlet weak var foodImage: UIImageView!
-    //    @IBOutlet weak var foodLabel: UILabel!
-    //    @IBOutlet weak var pluLabel: UILabel!
-    
-    let foodImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
-        
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
-    }()
-    
-    let foodLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
-    let pluLabel: UILabel = {
-        let label = UILabel()
-        
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textAlignment = .center
-        return label
-    }()
-    
-    
-    let stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillProportionally
-        return stackView
-    }()
-    
-    lazy var pluLabelInput: UITextField = {
-        
-        let textField = UITextField()
-        textField.placeholder = "PLU"
-        textField.frame = CGRect(x:38, y: 100, width: 244, height: 30)
-        //        textField.textAlignment = .center
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.keyboardType = .numberPad //keyboard type
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        
-        textField.delegate = self
-        return textField
-    }()
-    
     
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
     
+    var stackView = UIStackView()
+    var foodImage = UIImageView()
+    var foodLabel = UILabel()
+    var pluLabel = UILabel()
+    var keyboard = Keyboard()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .blue
-        
-        createStackView()
+        configure()
+        configureStackView()
         updateUI2()
-        view.addSubview(pluLabelInput)
-        addDoneButtonOnKeyboard()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIView.setAnimationsEnabled(false)
-        pluLabelInput.becomeFirstResponder()
- 
-    }
-    
-    @objc func textFieldDidChange(_ sender: UITextField) {
-        print(sender.text!)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        updateUI()
     }
     
     
-    func addDoneButtonOnKeyboard() {
-        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x:38, y: 100, width: 244, height: 30))
-        doneToolbar.barStyle = UIBarStyle.default
+    private func configure(){
+        view.addSubview(foodImage)
+        view.addSubview(foodLabel)
+        view.addSubview(pluLabel)
+        view.addSubview(keyboard)
         
-        let hide = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.close, target: nil, action: #selector(hideKeypad))
-        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+        pluLabel.text = "Mondale"
+        pluLabel.backgroundColor = .blue
+
+        keyboard.translatesAutoresizingMaskIntoConstraints = false
+        pluLabel.translatesAutoresizingMaskIntoConstraints = false
+        pluLabel.textAlignment = .center
         
-        let done: UIBarButtonItem = UIBarButtonItem(title: "Check", style: UIBarButtonItem.Style.done, target: self, action: #selector(submitButtonPressed))
+        foodLabel.translatesAutoresizingMaskIntoConstraints = false
+        foodLabel.textAlignment = .center
         
-        var items = [UIBarButtonItem]()
-        items.append(hide)
-        items.append(flexSpace)
-        items.append(done)
-        
-        doneToolbar.items = items
-        doneToolbar.sizeToFit()
-        self.pluLabelInput.inputAccessoryView = doneToolbar
+        foodImage.contentMode = .scaleAspectFit
+        foodImage.translatesAutoresizingMaskIntoConstraints = false
     }
+    
     
     @objc func checkButtonTapped() {
         let userAnswer = pluLabel.text!
@@ -121,22 +64,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    @objc func hideKeypad() {
-        pluLabelInput.resignFirstResponder()
-
-    }
     
-    
-    func createStackView() {
+    func configureStackView() {
         view.addSubview(stackView)
+        stackView.axis = .vertical
+        stackView.spacing = 2
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.distribution = .fillEqually
+    
+        
         stackView.addArrangedSubview(foodImage)
         stackView.addArrangedSubview(foodLabel)
         stackView.addArrangedSubview(pluLabel)
-        NSLayoutConstraint.activate([stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                                     stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
-                                     stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -250)
-        ])
-        
+        stackView.addArrangedSubview(keyboard)
+        NSLayoutConstraint.activate(
+                    [stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                     stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
+                     stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
+                        ])
     }
     
     func updateUI2() {
@@ -149,22 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        updateUI()
-    }
-    
-    
-    @IBAction func keyboardButtonPressed(_ sender: UIButton) {
-        
-        let numberPressed = sender.currentTitle!
-        
-        // Limits the PLU Label to 5 characters
-        if pluLabel.text!.count < 5 {
-            quiz.addNumber(numberPressed)
-            updateUI()
-        }
-        
-    }
+
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         quiz.quiz = pluList.pluList
@@ -186,17 +116,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.view.backgroundColor = .red
         }
         
-        self.pluLabelInput.text! = ""
         
-        // TODO: Get this method to work
         quiz.clearUserInput()
         Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
     }
     
     @objc func updateUI(){
         // Grabs the from produce from current quiz question
-        let produce = quiz.getFood()
         
+        let produce = quiz.getFood()
         pluLabel.text = quiz.getUserInput()
         foodLabel.text = produce.name
         foodImage.image = produce.image
