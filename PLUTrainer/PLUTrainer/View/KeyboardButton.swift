@@ -37,6 +37,21 @@ class KeyboardButton: UIButton {
     
     @objc func returnButtonValue(_ sender: UIButton) -> String {
         print(sender.currentTitle!)
+        sender.flash()
         return sender.currentTitle!
+    }
+}
+
+
+extension UIButton {
+    func flash() {
+        let flash = CABasicAnimation(keyPath: "opacity")
+        flash.duration = 0.1
+        flash.fromValue = 1
+        flash.toValue = 0.1
+        flash.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        flash.autoreverses = true
+//        flash.repeatCount = 3
+        layer.add(flash, forKey: nil)
     }
 }
