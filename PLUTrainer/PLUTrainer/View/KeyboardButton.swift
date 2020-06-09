@@ -18,8 +18,12 @@ class KeyboardButton: UIButton {
 
     init(title: String) {
         super.init(frame: .zero)
-    
-        self.backgroundColor = .red
+        
+        if title == "del" || title == "ent"{
+            self.backgroundColor = .blue
+        } else {
+            self.backgroundColor = .red
+        }
         setTitle(title, for: .normal)
         configure()
     }
@@ -35,10 +39,11 @@ class KeyboardButton: UIButton {
         addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
     }
     
-    @objc func returnButtonValue(_ sender: UIButton) -> String {
+    @objc func returnButtonValue(_ sender: UIButton ) -> String {
         print(sender.currentTitle!)
         sender.flash()
         return sender.currentTitle!
+
     }
 }
 

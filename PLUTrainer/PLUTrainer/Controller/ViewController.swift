@@ -94,6 +94,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    func updatePluInput(){
+        
+    }
 
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
@@ -122,8 +125,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func updateUI(){
-        // Grabs the from produce from current quiz question
         
+        // Grabs the from produce from current quiz question
         let produce = quiz.getFood()
         pluLabel.text = quiz.getUserInput()
         foodLabel.text = produce.name
