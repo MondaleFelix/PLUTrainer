@@ -8,7 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate {
+    func getText(text: String) {
+        pluLabel.text! += text
+    }
+    
     
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
@@ -18,18 +22,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
     var foodLabel = UILabel()
     var pluLabel = UILabel()
     var keyboard = Keyboard()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         configureStackView()
         updateUI2()
+        keyboard.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
         updateUI()
     }
-    
     
     private func configure(){
         view.addSubview(foodImage)

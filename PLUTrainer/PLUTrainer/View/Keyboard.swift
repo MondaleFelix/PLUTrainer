@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ReturnTextDelegate {
+    func getText(text: String)
+}
+
 class Keyboard: UIView {
     
     // Horizontal Stack View of all Keyboard Buttons
@@ -18,6 +22,8 @@ class Keyboard: UIView {
     var secondRow = UIStackView()
     var thirdRow = UIStackView()
     var fourthRow = UIStackView()
+    
+    var delegate: ReturnTextDelegate!
     
     
     override init(frame: CGRect) {
@@ -41,7 +47,7 @@ class Keyboard: UIView {
         stackView.addArrangedSubview(secondRow)
         stackView.addArrangedSubview(thirdRow)
         stackView.addArrangedSubview(fourthRow)
-
+        
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = CGFloat(10.0)
         stackView.distribution = .fillEqually
@@ -52,9 +58,9 @@ class Keyboard: UIView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-
-        
-        
+            
+            
+            
         ])
         
     }
@@ -64,7 +70,7 @@ class Keyboard: UIView {
         let oneButton = KeyboardButton(title: "1")
         let twoButton = KeyboardButton(title: "2")
         let threeButton = KeyboardButton(title: "3")
-
+        
         firstRow.addArrangedSubview(oneButton)
         firstRow.addArrangedSubview(twoButton)
         firstRow.addArrangedSubview(threeButton)
@@ -81,7 +87,7 @@ class Keyboard: UIView {
         let fourButton = KeyboardButton(title: "4")
         let fiveButton = KeyboardButton(title: "5")
         let sixButton = KeyboardButton(title: "6")
-
+        
         secondRow.addArrangedSubview(fourButton)
         secondRow.addArrangedSubview(fiveButton)
         secondRow.addArrangedSubview(sixButton)
@@ -99,7 +105,7 @@ class Keyboard: UIView {
         let sevenButton = KeyboardButton(title: "7")
         let eightButton = KeyboardButton(title: "8")
         let nineButton = KeyboardButton(title: "9")
-
+        
         thirdRow.addArrangedSubview(sevenButton)
         thirdRow.addArrangedSubview(eightButton)
         thirdRow.addArrangedSubview(nineButton)
@@ -117,7 +123,11 @@ class Keyboard: UIView {
         let deleteButton = KeyboardButton(title: "del")
         let zeroButton = KeyboardButton(title: "0")
         let enterButton = KeyboardButton(title: "ent")
-
+        deleteButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        zeroButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        enterButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        
+        
         fourthRow.addArrangedSubview(deleteButton)
         fourthRow.addArrangedSubview(zeroButton)
         fourthRow.addArrangedSubview(enterButton)
@@ -126,5 +136,11 @@ class Keyboard: UIView {
         fourthRow.axis = .horizontal
         fourthRow.distribution = .fillEqually
         
+    }
+    
+    @objc func returnButtonValue(_ sender: UIButton ) {
+        print(sender.currentTitle!)
+        sender.flash()
+        delegate.getText(text: sender.currentTitle!)
     }
 }

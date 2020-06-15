@@ -36,15 +36,16 @@ class KeyboardButton: UIButton {
         layer.cornerRadius = 20
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
-        addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+//        addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
     }
-    
-    @objc func returnButtonValue(_ sender: UIButton ) -> String {
-        print(sender.currentTitle!)
-        sender.flash()
-        return sender.currentTitle!
 
-    }
+    
+//    @objc func returnButtonValue(_ sender: UIButton ) -> String {
+//        print(sender.currentTitle!)
+//        sender.flash()
+//        return sender.currentTitle!
+//
+//    }
 }
 
 
