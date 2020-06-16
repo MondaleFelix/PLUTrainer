@@ -42,6 +42,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate 
         view.addSubview(pluLabel)
         view.addSubview(keyboard)
         
+        
         pluLabel.text = "Mondale"
         pluLabel.backgroundColor = .blue
 

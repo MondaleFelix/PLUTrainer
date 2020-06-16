@@ -36,7 +36,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         VC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
         let navVC = UINavigationController(rootViewController: VC)
 
-        tabbar.viewControllers = [navVC, createAddProduceNC()]
+        tabbar.viewControllers = [navVC, createAddProduceNC(), createProduceListNC()]
         return tabbar
     }
     
@@ -44,6 +44,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let addProduceVC = AddProduceViewController2()
         addProduceVC.title = "Add Produce"
         addProduceVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 2)
+        return UINavigationController(rootViewController: addProduceVC)
+        
+    }
+    
+    func createProduceListNC() -> UINavigationController {
+        let addProduceVC = ProduceListViewController()
+        addProduceVC.title = "Produce List"
+        addProduceVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 3)
         return UINavigationController(rootViewController: addProduceVC)
         
     }
