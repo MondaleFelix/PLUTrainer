@@ -10,10 +10,17 @@ import UIKit
 
 class AddProduceViewController2: UIViewController {
     
-    var produceImageView = UIImageView()
+    var produceImageView : UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        image.layer.cornerRadius = 10
+        image.clipsToBounds = true
+        return image
+    }()
     var nameTextField = UITextField()
     var codeTextField = UITextField()
-    var button = UIButton()
+    var imagePickerButton = UIButton()
     var imagePicker = UIImagePickerController()
 
 
@@ -34,10 +41,11 @@ class AddProduceViewController2: UIViewController {
     func configure() {
         nameTextField.text = "test"
         codeTextField.text = "code"
-        button.setTitle("Picker", for: .normal)
-        button.backgroundColor = .blue
-        button.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
-        let stack = UIStackView(arrangedSubviews: [nameTextField, codeTextField, button])
+        imagePickerButton.setTitle("Picker", for: .normal)
+        imagePickerButton.backgroundColor = .blue
+//        produceImageView.image = UIImage(named: "banana")
+        imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
+        let stack = UIStackView(arrangedSubviews: [produceImageView, nameTextField, codeTextField, imagePickerButton])
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -54,6 +62,7 @@ class AddProduceViewController2: UIViewController {
     }
     
     @objc func selectImagePressed() {
+        imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
@@ -69,6 +78,11 @@ extension AddProduceViewController2: UIImagePickerControllerDelegate, UINavigati
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             produceImageView.image = image
         }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        // Dismiss the picker if the user canceled.
         dismiss(animated: true, completion: nil)
     }
     

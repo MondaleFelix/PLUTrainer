@@ -8,8 +8,8 @@
 
 import UIKit
 
-protocol ReturnTextDelegate {
-    func getText(text: String)
+protocol ReturnButtonNameDelegate {
+    func getButtonLabel(buttonName: String)
 }
 
 class Keyboard: UIView {
@@ -23,7 +23,7 @@ class Keyboard: UIView {
     var thirdRow = UIStackView()
     var fourthRow = UIStackView()
     
-    var delegate: ReturnTextDelegate!
+    var delegate: ReturnButtonNameDelegate!
     
     
     override init(frame: CGRect) {
@@ -71,6 +71,10 @@ class Keyboard: UIView {
         let twoButton = KeyboardButton(title: "2")
         let threeButton = KeyboardButton(title: "3")
         
+        oneButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        twoButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        threeButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        
         firstRow.addArrangedSubview(oneButton)
         firstRow.addArrangedSubview(twoButton)
         firstRow.addArrangedSubview(threeButton)
@@ -87,6 +91,11 @@ class Keyboard: UIView {
         let fourButton = KeyboardButton(title: "4")
         let fiveButton = KeyboardButton(title: "5")
         let sixButton = KeyboardButton(title: "6")
+        
+        fourButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        fiveButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        sixButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        
         
         secondRow.addArrangedSubview(fourButton)
         secondRow.addArrangedSubview(fiveButton)
@@ -105,6 +114,10 @@ class Keyboard: UIView {
         let sevenButton = KeyboardButton(title: "7")
         let eightButton = KeyboardButton(title: "8")
         let nineButton = KeyboardButton(title: "9")
+        
+        sevenButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        eightButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        nineButton.addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
         
         thirdRow.addArrangedSubview(sevenButton)
         thirdRow.addArrangedSubview(eightButton)
@@ -141,6 +154,6 @@ class Keyboard: UIView {
     @objc func returnButtonValue(_ sender: UIButton ) {
         print(sender.currentTitle!)
         sender.flash()
-        delegate.getText(text: sender.currentTitle!)
+        delegate.getButtonLabel(buttonName: sender.currentTitle!)
     }
 }

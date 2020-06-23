@@ -8,11 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate {
-    func getText(text: String) {
-        pluLabel.text! += text
+class ViewController: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
+    func getButtonLabel(buttonName: String) {
+        if buttonName == "del" {
+            pluLabel.text! = String(pluLabel.text!.dropLast())
+        } else if buttonName == "ent" {
+            let correctAnswer = quiz.checkAnswer(pluLabel.text!)
+            
+            if correctAnswer {
+                self.view.backgroundColor = .green
+            } else {
+                self.view.backgroundColor = .red
+            }
+            Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
+        } else {
+            pluLabel.text! += buttonName
+        }
     }
-    
     
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
@@ -23,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate 
     var pluLabel = UILabel()
     var keyboard = Keyboard()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
@@ -45,7 +57,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate 
         
         pluLabel.text = "Mondale"
         pluLabel.backgroundColor = .blue
-
+        
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.textAlignment = .center
@@ -77,17 +89,17 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate 
         stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
-    
+        
         
         stackView.addArrangedSubview(foodImage)
         stackView.addArrangedSubview(foodLabel)
         stackView.addArrangedSubview(pluLabel)
         stackView.addArrangedSubview(keyboard)
         NSLayoutConstraint.activate(
-                    [stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                     stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
-                     stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
-                        ])
+            [stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
+             stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
+        ])
     }
     
     func updateUI2() {
@@ -103,7 +115,7 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnTextDelegate 
     func updatePluInput(){
         
     }
-
+    
     
     @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
         quiz.quiz = pluList.pluList
