@@ -18,7 +18,8 @@ class Quiz {
         Produce(image: UIImage.init(named: "banana")!, name: "banana", plu: "94011"),
         Produce(image: UIImage.init(named: "lime")!, name: "lime", plu: "94048"),
         Produce(image: UIImage.init(named: "lemon")!, name: "lemon", plu: "94958"),
-        Produce(image: UIImage.init(named: "orange")!, name: "orange", plu: "93107")
+        Produce(image: UIImage.init(named: "orange")!, name: "ornage", plu: "93107"),
+
     ]
     
     

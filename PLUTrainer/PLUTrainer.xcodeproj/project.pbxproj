@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2C09AAD724861B02003D6BE3 /* AddProduceViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */; };
+		2C35A51E24A1B30000BF07E8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2C35A51D24A1B30000BF07E8 /* README.md */; };
 		6F3588642488FA3400171A7D /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3588632488FA3400171A7D /* Keyboard.swift */; };
 		6F35886824890F6700171A7D /* KeyboardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F35886724890F6700171A7D /* KeyboardButton.swift */; };
 		6F4AD8C823D8FA3B00B94009 /* ProduceList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F4AD8C723D8FA3B00B94009 /* ProduceList.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduceViewController2.swift; sourceTree = "<group>"; };
+		2C35A51D24A1B30000BF07E8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6F3588632488FA3400171A7D /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		6F35886724890F6700171A7D /* KeyboardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardButton.swift; sourceTree = "<group>"; };
 		6F4AD8C723D8FA3B00B94009 /* ProduceList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceList.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 		6F62B2D523C3E65600E88367 = {
 			isa = PBXGroup;
 			children = (
+				2C35A51D24A1B30000BF07E8 /* README.md */,
 				6F62B2E023C3E65600E88367 /* PLUTrainer */,
 				6F62B2DF23C3E65600E88367 /* Products */,
 			);
@@ -175,6 +178,7 @@
 			files = (
 				6F62B2EE23C3E65C00E88367 /* LaunchScreen.storyboard in Resources */,
 				6F62B2EB23C3E65C00E88367 /* Assets.xcassets in Resources */,
+				2C35A51E24A1B30000BF07E8 /* README.md in Resources */,
 				6F62B2E923C3E65600E88367 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

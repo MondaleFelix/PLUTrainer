@@ -39,9 +39,9 @@ class AddProduceViewController2: UIViewController {
        }
     
     func configure() {
-        nameTextField.text = "test"
-        codeTextField.text = "code"
-        imagePickerButton.setTitle("Picker", for: .normal)
+        nameTextField.placeholder = "Produce Name"
+        codeTextField.placeholder = "PLU Code"
+        imagePickerButton.setTitle("Image Picker", for: .normal)
         imagePickerButton.backgroundColor = .blue
 //        produceImageView.image = UIImage(named: "banana")
         imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)

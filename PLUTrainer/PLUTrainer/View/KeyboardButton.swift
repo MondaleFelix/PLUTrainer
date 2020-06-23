@@ -19,10 +19,12 @@ class KeyboardButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         
-        if title == "del" || title == "ent"{
-            self.backgroundColor = .blue
-        } else {
+        if title == "del"{
             self.backgroundColor = .red
+        } else if title == "ent" {
+            self.backgroundColor = .brown
+        } else {
+            self.backgroundColor = .blue
         }
         setTitle(title, for: .normal)
         configure()

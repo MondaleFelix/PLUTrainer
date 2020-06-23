@@ -4,7 +4,7 @@
 //
 //  Created by Mondale on 1/7/20.
 //  Copyright © 2020 Mondale. All rights reserved.
-//
+// The orange is messing it up
 
 import UIKit
 
@@ -56,7 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnButtonNameDel
         
         
         pluLabel.text = "Mondale"
-        pluLabel.backgroundColor = .blue
         
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.translatesAutoresizingMaskIntoConstraints = false
