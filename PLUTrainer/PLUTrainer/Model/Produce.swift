@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Produce : Equatable {
+struct ProduceOLD : Equatable {
     let image: UIImage
     let name: String
     let plu: String

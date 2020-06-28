@@ -13,22 +13,22 @@ class ProduceList  {
     static let sharedInstance = ProduceList()
     
     var pluList = [
-        Produce(image: UIImage.init(named: "banana")!, name: "banana", plu: "94011"),
-        Produce(image: UIImage.init(named: "lime")!, name: "lime", plu: "94048"),
-        Produce(image: UIImage.init(named: "lemon")!, name: "lemon", plu: "94958"),
-        Produce(image: UIImage.init(named: "orange")!, name: "orange", plu: "93107")
+        ProduceOLD(image: UIImage.init(named: "banana")!, name: "banana", plu: "94011"),
+        ProduceOLD(image: UIImage.init(named: "lime")!, name: "lime", plu: "94048"),
+        ProduceOLD(image: UIImage.init(named: "lemon")!, name: "lemon", plu: "94958"),
+        ProduceOLD(image: UIImage.init(named: "orange")!, name: "orange", plu: "93107")
     ]
     
     
 
-    func deleteProduce(_ produce: Produce){
+    func deleteProduce(_ produce: ProduceOLD){
         
         if let deleteIndex = self.pluList.firstIndex(of: produce) {
             self.pluList.remove(at: deleteIndex)
         }
     }
     
-    func addProduce(_ produce: Produce){
+    func addProduce(_ produce: ProduceOLD){
         self.pluList.append(produce)
     }
     

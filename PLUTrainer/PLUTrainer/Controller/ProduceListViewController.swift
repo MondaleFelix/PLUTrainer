@@ -16,7 +16,7 @@ class ProduceListViewController: UIViewController {
         return newTable
     }()
     
-    var produceList: [Produce] = []
+    var produceList: [ProduceOLD] = []
 //    var names: [String] = ["ME", "you", "we"]
     
     let data = ProduceList.sharedInstance

@@ -7,8 +7,9 @@
 // The orange is messing it up
 
 import UIKit
+import CoreData
 
-class ViewController: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
+class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     func getButtonLabel(buttonName: String) {
         if buttonName == "del" {
             pluLabel.text! = String(pluLabel.text!.dropLast())
@@ -26,6 +27,8 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnButtonNameDel
         }
     }
     
+    var managedContext: NSManagedObjectContext!
+    
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
     
@@ -42,6 +45,8 @@ class ViewController: UIViewController, UITextFieldDelegate, ReturnButtonNameDel
         configureStackView()
         updateUI2()
         keyboard.delegate = self
+        // if want to get location where application is stored
+//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
     }
     
     override func viewWillAppear(_ animated: Bool) {

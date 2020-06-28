@@ -11,6 +11,8 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    
+    lazy var coreDataStack = CoreDataStack(modelName: "Produce")
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,18 +25,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = createTabbar()
         window?.makeKeyAndVisible()
-        
-        
-        
-        
     }
 
     func createTabbar() -> UITabBarController {
         let tabbar = UITabBarController()
-        let VC = ViewController()
-        VC.title = "Quiz"
-        VC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
-        let navVC = UINavigationController(rootViewController: VC)
+        let quizVC = QuizVC()
+        quizVC.title = "Quiz"
+        quizVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        quizVC.managedContext = self.coreDataStack.managedContext
+        
+        let navVC = UINavigationController(rootViewController: quizVC)
 
         tabbar.viewControllers = [navVC, createAddProduceNC(), createProduceListNC()]
         return tabbar

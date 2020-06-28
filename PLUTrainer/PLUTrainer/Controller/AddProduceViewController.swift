@@ -11,8 +11,8 @@ import UIKit
 class AddProduceViewController: UIViewController {
     
     
-    let data = ProduceList.sharedInstance
-    let quizList = Quiz.sharedInstance
+//    let data = ProduceList.sharedInstance
+//    let quizList = Quiz.sharedInstance
     var imagePicker = UIImagePickerController()
     
     var produceImageView =  UIImageView()
@@ -49,18 +49,18 @@ class AddProduceViewController: UIViewController {
     }
     
 
-    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
-        
-        let name = nameTextField.text!
-        let code = codeTextField.text!
-        let image = produceImageView.image!
-        
-        let produce = Produce(image: image, name: name, plu: code)
-        
-        data.addProduce(produce)
-        quizList.addProduce(produce)
-        self.dismiss(animated: true, completion: nil)
-    }
+//    @IBAction func saveButtonPressed(_ sender: UIBarButtonItem) {
+//        
+//        let name = nameTextField.text!
+//        let code = codeTextField.text!
+//        let image = produceImageView.image!
+//        
+//        let produce = Produce(image: image, name: name, plu: code)
+//        
+//        data.addProduce(produce)
+//        quizList.addProduce(produce)
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     @IBAction func selectImagePressed(_ sender: UIButton) {
         imagePicker.sourceType = .photoLibrary
