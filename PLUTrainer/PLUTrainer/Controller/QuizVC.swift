@@ -27,7 +27,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         }
     }
     
-    var managedContext: NSManagedObjectContext!
+    var coreData = CoreDataStack(modelName: "Produce")
     
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
@@ -47,6 +47,35 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         keyboard.delegate = self
         // if want to get location where application is stored
 //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+//          let uiImage = UIImageView()
+//                        uiImage.image = UIImage(named: "banana")
+//                let produce1 = Produce(context: self.coreData.managedContext)
+//                        produce1.name = "test2"
+//                        produce1.plu = "testplucode2"
+//                        produce1.image = uiImage.image?.pngData()
+//                coreData.saveContext()
+        fetchTest()
+        
+    }
+    
+    private func fetchTest() {
+        self.coreData.fetchPersistedData {
+            
+            (fetchItemsResult) in
+            
+            switch fetchItemsResult {
+            case let .success(items):
+                print(items)
+                for item in items {
+                    print(item.name)
+                    print(item.image)
+                }
+            case .failure(let error):
+                print(error)
+            }
+            // reload the collection view's data source to present the current data set to the user
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

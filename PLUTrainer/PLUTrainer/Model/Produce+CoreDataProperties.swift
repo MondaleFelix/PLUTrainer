@@ -7,9 +7,8 @@
 //
 //
 
-import UIKit.UIImage
+import Foundation
 import CoreData
-
 
 
 extension Produce {
@@ -20,6 +19,6 @@ extension Produce {
 
     @NSManaged public var plu: String
     @NSManaged public var name: String
-    @NSManaged public var image: UIImage?
+    @NSManaged public var image: Data?
 
 }

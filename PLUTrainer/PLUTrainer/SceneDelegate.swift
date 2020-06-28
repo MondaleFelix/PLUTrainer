@@ -12,7 +12,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     
-    lazy var coreDataStack = CoreDataStack(modelName: "Produce")
+//    lazy var coreDataStack = CoreDataStack(modelName: "Produce")
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -32,7 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let quizVC = QuizVC()
         quizVC.title = "Quiz"
         quizVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
-        quizVC.managedContext = self.coreDataStack.managedContext
+//        quizVC.coreData = self.coreDataStack.managedContext
         
         let navVC = UINavigationController(rootViewController: quizVC)
 
