@@ -27,7 +27,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         }
     }
     
-    var coreData = CoreDataStack(modelName: "Produce")
+    var coreData = CoreDataStack()
     
     var quiz = Quiz.sharedInstance
     var pluList = ProduceList.sharedInstance
@@ -46,24 +46,21 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         updateUI2()
         keyboard.delegate = self
         // if want to get location where application is stored
-//        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        //        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
-//          let uiImage = UIImageView()
-//                        uiImage.image = UIImage(named: "banana")
-//                let produce1 = Produce(context: self.coreData.managedContext)
-//                        produce1.name = "test2"
-//                        produce1.plu = "testplucode2"
-//                        produce1.image = uiImage.image?.pngData()
-//                coreData.saveContext()
+        //          let uiImage = UIImageView()
+        //                        uiImage.image = UIImage(named: "banana")
+        //                let produce1 = Produce(context: self.coreData.managedContext)
+        //                        produce1.name = "test2"
+        //                        produce1.plu = "testplucode2"
+        //                        produce1.image = uiImage.image?.pngData()
+        //                coreData.saveContext()
         fetchTest()
         
     }
     
     private func fetchTest() {
-        self.coreData.fetchPersistedData {
-            
-            (fetchItemsResult) in
-            
+        self.coreData.fetchPersistedData { (fetchItemsResult) in
             switch fetchItemsResult {
             case let .success(items):
                 print(items)

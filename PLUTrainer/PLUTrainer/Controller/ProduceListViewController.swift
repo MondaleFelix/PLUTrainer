@@ -10,13 +10,15 @@ import UIKit
 
 class ProduceListViewController: UIViewController {
     
+    var coreData = CoreDataStack()
+    
     var table: UITableView = {
         let newTable = UITableView()
         newTable.translatesAutoresizingMaskIntoConstraints = false
         return newTable
     }()
     
-    var produceList: [ProduceOLD] = []
+    var produceList: [Produce] = []
 //    var names: [String] = ["ME", "you", "we"]
     
     let data = ProduceList.sharedInstance
@@ -35,6 +37,19 @@ class ProduceListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         configureTable()
+        fetchProduce()
+    }
+    
+    private func fetchProduce() {
+        self.coreData.fetchPersistedData { (fetchItemsResult) in
+            switch fetchItemsResult {
+            case let .success(items):
+                self.produceList = items
+            case .failure(let error):
+                print(error)
+            }
+            // reload the collection view's data source to present the current data set to the user
+        }
     }
     
 //    override func viewWillAppear(_ animated: Bool) {
@@ -95,23 +110,31 @@ class ProduceListViewController: UIViewController {
 
 extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.pluList.count
+        return produceList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let produce = data.pluList[indexPath.row]
+        let produce = produceList[indexPath.row]
         cell.textLabel!.text = produce.name
         return cell
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let produceItem = data.pluList[indexPath.row]
-        
-        data.deleteProduce(produceItem)
-        quizList.deleteProduce(produceItem)
-        table.reloadData()
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let produceDetailPage = ProduceDetailVC()
+        produceDetailPage.produceItem = produceList[indexPath.row]
+        self.present(produceDetailPage, animated: true, completion: nil)
     }
+    
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        let produceItem = data.pluList[indexPath.row]
+//
+//        data.deleteProduce(produceItem)
+//        quizList.deleteProduce(produceItem)
+//        table.reloadData()
+//    }
     
     
 }
+
+

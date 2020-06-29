@@ -11,9 +11,9 @@ import CoreData
 
 class CoreDataStack {
     
-    private let modelName: String
+    private let modelName: String = ""
     private lazy var storeContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: self.modelName)
+        let container = NSPersistentContainer(name: "Produce")
         container.loadPersistentStores { (storeDescription, error) in
             if let error = error as NSError? {
                 print("Error: \(error), \(error.userInfo)")
@@ -27,9 +27,9 @@ class CoreDataStack {
         return self.storeContainer.viewContext
     }()
     
-    init(modelName: String) {
-        self.modelName = modelName
-    }
+//    init(modelName: String) {
+//        self.modelName = modelName
+//    }
     
     func saveContext() {
         guard managedContext.hasChanges else { return }
