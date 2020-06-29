@@ -22,6 +22,8 @@ class AddProduceViewController2: UIViewController {
     var codeTextField = UITextField()
     var imagePickerButton = UIButton()
     var imagePicker = UIImagePickerController()
+    var saveButton = UIButton()
+    var coreDataStack = CoreDataStack()
 
 
     override func viewDidLoad() {
@@ -39,13 +41,17 @@ class AddProduceViewController2: UIViewController {
        }
     
     func configure() {
-        nameTextField.placeholder = "Produce Name"
-        codeTextField.placeholder = "PLU Code"
-        imagePickerButton.setTitle("Image Picker", for: .normal)
-        imagePickerButton.backgroundColor = .blue
-//        produceImageView.image = UIImage(named: "banana")
-        imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
-        let stack = UIStackView(arrangedSubviews: [produceImageView, nameTextField, codeTextField, imagePickerButton])
+        self.nameTextField.placeholder = "Produce Name"
+        self.codeTextField.placeholder = "PLU Code"
+        self.imagePickerButton.setTitle("Image Picker", for: .normal)
+        self.imagePickerButton.backgroundColor = .blue
+        self.saveButton.setTitle("SAVE", for: .normal)
+        self.saveButton.backgroundColor = .yellow
+        self.imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
+        self.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+        
+        let stack = UIStackView(arrangedSubviews: [produceImageView, nameTextField, codeTextField, imagePickerButton, saveButton])
+        
         stack.axis = .vertical
         stack.distribution = .fillProportionally
         stack.translatesAutoresizingMaskIntoConstraints = false
@@ -68,6 +74,27 @@ class AddProduceViewController2: UIViewController {
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @objc func saveButtonPressed() {
+        let newProduce = Produce(context: self.coreDataStack.managedContext)
+        newProduce.name = self.nameTextField.text!
+        newProduce.plu = self.codeTextField.text!
+        newProduce.image = self.produceImageView.image?.pngData()
+        self.coreDataStack.saveContext()
+        self.alert()
+        self.resetUI()
+    }
+    
+    func alert() {
+        let alert = UIAlertController(title: "Saved", message: "Produce saved successfully!", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func resetUI() {
+        self.nameTextField.text = ""
+        self.codeTextField.text = ""
+    }
+    
 }
 
 
@@ -88,3 +115,4 @@ extension AddProduceViewController2: UIImagePickerControllerDelegate, UINavigati
     
     
 }
+

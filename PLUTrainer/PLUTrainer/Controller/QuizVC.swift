@@ -55,7 +55,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         //                        produce1.plu = "testplucode2"
         //                        produce1.image = uiImage.image?.pngData()
         //                coreData.saveContext()
-        fetchTest()
+//        fetchTest()
         
     }
     
@@ -183,3 +183,4 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }
     
 }
+

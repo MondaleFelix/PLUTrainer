@@ -37,7 +37,7 @@ class ProduceListViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
         configureTable()
-        fetchProduce()
+//        fetchProduce()
     }
     
     private func fetchProduce() {
@@ -52,10 +52,13 @@ class ProduceListViewController: UIViewController {
         }
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//            tableView.reloadData()
-//
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.fetchProduce()
+            self.table.reloadData()
+        }
+
+    }
     
     
     // Protocol Methods
