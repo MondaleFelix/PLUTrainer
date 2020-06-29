@@ -41,6 +41,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+         fetchTest()
         configure()
         configureStackView()
         updateUI2()
@@ -55,7 +56,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         //                        produce1.plu = "testplucode2"
         //                        produce1.image = uiImage.image?.pngData()
         //                coreData.saveContext()
-//        fetchTest()
+       
         
     }
     
@@ -65,8 +66,8 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
             case let .success(items):
                 print(items)
                 for item in items {
-                    print(item.name)
-                    print(item.image)
+                    var newItem = ProduceOLD(image: UIImage(data: item.image!)!, name: item.name, plu: item.plu)
+                    self.quiz.quiz.append(newItem)
                 }
             case .failure(let error):
                 print(error)
@@ -80,14 +81,13 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }
     
     private func configure(){
-        view.addSubview(foodImage)
-        view.addSubview(foodLabel)
-        view.addSubview(pluLabel)
-        view.addSubview(keyboard)
+        // Redundant!
+//        view.addSubview(foodImage)
+//        view.addSubview(foodLabel)
+//        view.addSubview(pluLabel)
+//        view.addSubview(keyboard)
         
-        
-        pluLabel.text = "Mondale"
-        
+                
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.textAlignment = .center
@@ -100,17 +100,17 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }
     
     
-    @objc func checkButtonTapped() {
-        let userAnswer = pluLabel.text!
-        let correctAnswer = quiz.checkAnswer(userAnswer)
-        
-        if correctAnswer {
-            self.view.backgroundColor = .green
-        } else {
-            self.view.backgroundColor = .red
-        }
-        
-    }
+//    @objc func checkButtonTapped() {
+//        let userAnswer = pluLabel.text!
+//        let correctAnswer = quiz.checkAnswer(userAnswer)
+//        
+//        if correctAnswer {
+//            self.view.backgroundColor = .green
+//        } else {
+//            self.view.backgroundColor = .red
+//        }
+//        
+//    }
     
     
     func configureStackView() {
@@ -126,12 +126,13 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         stackView.addArrangedSubview(pluLabel)
         stackView.addArrangedSubview(keyboard)
         NSLayoutConstraint.activate(
-            [stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
+            [stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0),
              stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
         ])
     }
-    
+
     func updateUI2() {
         let produce = quiz.getFood()
         
@@ -142,42 +143,42 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         
     }
     
-    func updatePluInput(){
-        
-    }
+//    func updatePluInput(){
+//
+//    }
     
     
-    @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
-        quiz.quiz = pluList.pluList
-        updateUI()
-    }
+//    @IBAction func refreshButtonPressed(_ sender: UIBarButtonItem) {
+//        quiz.quiz = pluList.pluList
+//        updateUI()
+//    }
     
-    @IBAction func deleteButtonPressed(_ sender: UIButton) {
-        quiz.deleteNumber()
-        updateUI()
-    }
-    
-    @objc func submitButtonPressed(_ sender: UIButton) {
-        let userAnswer = pluLabel.text!
-        let correctAnswer = quiz.checkAnswer(userAnswer)
-        
-        if correctAnswer {
-            self.view.backgroundColor = .green
-        } else {
-            self.view.backgroundColor = .red
-        }
-        
-        
-        quiz.clearUserInput()
-        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
-    }
-    
+//    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+//        quiz.deleteNumber()
+//        updateUI()
+//    }
+//
+//    @objc func submitButtonPressed(_ sender: UIButton) {
+//        let userAnswer = pluLabel.text!
+//        let correctAnswer = quiz.checkAnswer(userAnswer)
+//
+//        if correctAnswer {
+//            self.view.backgroundColor = .green
+//        } else {
+//            self.view.backgroundColor = .red
+//        }
+//
+//
+//        quiz.clearUserInput()
+//        Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
+//    }
+//
     @objc func updateUI(){
         
         // Grabs the from produce from current quiz question
         let produce = quiz.getFood()
         pluLabel.text = quiz.getUserInput()
-        foodLabel.text = produce.name
+        foodLabel.text = produce.plu
         foodImage.image = produce.image
         self.view.backgroundColor = .white
     }

@@ -28,12 +28,12 @@ class Keyboard: UIView {
     
     override init(frame: CGRect) {
         super.init(frame:frame)
+        translatesAutoresizingMaskIntoConstraints = false
         configureFirstRow()
         configureSecondRow()
         configureThirdRow()
         configureFourthRow()
         configureStackView()
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
     required init?(coder: NSCoder) {
