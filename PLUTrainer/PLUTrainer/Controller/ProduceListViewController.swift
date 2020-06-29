@@ -100,7 +100,7 @@ class ProduceListViewController: UIViewController {
 //    }
 
     // Enables swipe deletion 
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
 //
 //        let produceItem = data.pluList[indexPath.row]
 //
@@ -129,13 +129,17 @@ extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource 
         self.present(produceDetailPage, animated: true, completion: nil)
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        let produceItem = data.pluList[indexPath.row]
-//
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let produceItem = produceList[indexPath.row]
+        self.coreData.managedContext.delete(produceItem)
+        self.produceList.remove(at: indexPath.row)
+        self.table.deleteRows(at: [indexPath], with: .fade)
 //        data.deleteProduce(produceItem)
 //        quizList.deleteProduce(produceItem)
-//        table.reloadData()
-//    }
+        self.coreData.saveContext()
+        
+        table.reloadData()
+    }
     
     
 }
