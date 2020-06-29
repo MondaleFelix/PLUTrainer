@@ -21,7 +21,7 @@ class ProduceListViewController: UIViewController {
     var produceList: [Produce] = []
 //    var names: [String] = ["ME", "you", "we"]
     
-    let data = ProduceList.sharedInstance
+//    let data = ProduceList.sharedInstance
     let quizList = Quiz.sharedInstance
     
 //    required init?(coder aDecoder: NSCoder) {

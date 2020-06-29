@@ -30,7 +30,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     var coreData = CoreDataStack()
     
     var quiz = Quiz.sharedInstance
-    var pluList = ProduceList.sharedInstance
+//    var pluList = ProduceList.sharedInstance
     
     var stackView = UIStackView()
     var foodImage = UIImageView()

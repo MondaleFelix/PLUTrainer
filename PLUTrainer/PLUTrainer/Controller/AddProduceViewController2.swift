@@ -46,7 +46,7 @@ class AddProduceViewController2: UIViewController {
         self.imagePickerButton.setTitle("Image Picker", for: .normal)
         self.imagePickerButton.backgroundColor = .blue
         self.saveButton.setTitle("SAVE", for: .normal)
-        self.saveButton.backgroundColor = .yellow
+        self.saveButton.backgroundColor = .orange
         self.imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
         self.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         
