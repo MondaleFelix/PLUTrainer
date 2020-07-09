@@ -26,7 +26,7 @@
 		6F68553E23C54E0900DE6957 /* Produce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F68553D23C54E0900DE6957 /* Produce.swift */; };
 		6F68554023C54EE600DE6957 /* Quiz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F68553F23C54EE600DE6957 /* Quiz.swift */; };
 		6FBEEA8F23C7657200F042D0 /* ProduceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEEA8E23C7657200F042D0 /* ProduceListViewController.swift */; };
-		6FBEEA9123C904C300F042D0 /* AddProduceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEEA9023C904C300F042D0 /* AddProduceViewController.swift */; };
+		6FBEEA9123C904C300F042D0 /* AddProduceViewControllerOLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEEA9023C904C300F042D0 /* AddProduceViewControllerOLD.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +51,7 @@
 		6F68553D23C54E0900DE6957 /* Produce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Produce.swift; sourceTree = "<group>"; };
 		6F68553F23C54EE600DE6957 /* Quiz.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quiz.swift; sourceTree = "<group>"; };
 		6FBEEA8E23C7657200F042D0 /* ProduceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceListViewController.swift; sourceTree = "<group>"; };
-		6FBEEA9023C904C300F042D0 /* AddProduceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduceViewController.swift; sourceTree = "<group>"; };
+		6FBEEA9023C904C300F042D0 /* AddProduceViewControllerOLD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduceViewControllerOLD.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,7 +95,7 @@
 				6F4DACA223C4BD6300AC99B1 /* QuizVC.swift */,
 				6FBEEA8E23C7657200F042D0 /* ProduceListViewController.swift */,
 				2C9BB4BD24A993F200936C1C /* ProduceDetailVC.swift */,
-				6FBEEA9023C904C300F042D0 /* AddProduceViewController.swift */,
+				6FBEEA9023C904C300F042D0 /* AddProduceViewControllerOLD.swift */,
 				2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */,
 			);
 			path = Controller;
@@ -213,7 +213,7 @@
 				6F3588642488FA3400171A7D /* Keyboard.swift in Sources */,
 				6FBEEA8F23C7657200F042D0 /* ProduceListViewController.swift in Sources */,
 				6F4AD8C823D8FA3B00B94009 /* ProduceList.swift in Sources */,
-				6FBEEA9123C904C300F042D0 /* AddProduceViewController.swift in Sources */,
+				6FBEEA9123C904C300F042D0 /* AddProduceViewControllerOLD.swift in Sources */,
 				6F68554023C54EE600DE6957 /* Quiz.swift in Sources */,
 				6F62B2E223C3E65600E88367 /* AppDelegate.swift in Sources */,
 				6F68553E23C54E0900DE6957 /* Produce.swift in Sources */,

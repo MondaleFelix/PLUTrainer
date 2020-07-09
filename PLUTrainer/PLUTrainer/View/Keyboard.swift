@@ -14,10 +14,10 @@ protocol ReturnButtonNameDelegate {
 
 class Keyboard: UIView {
     
-    // Horizontal Stack View of all Keyboard Buttons
+    // Vertically Stack View of all Keyboard Buttons
     let stackView = UIStackView()
     
-    // Rows of buttons
+    // Rows of buttons, horizontially
     var firstRow = UIStackView()
     var secondRow = UIStackView()
     var thirdRow = UIStackView()
@@ -58,9 +58,7 @@ class Keyboard: UIView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-            
-            
-            
+        
         ])
         
     }

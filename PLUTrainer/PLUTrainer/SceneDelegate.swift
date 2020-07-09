@@ -31,7 +31,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let tabbar = UITabBarController()
         let quizVC = QuizVC()
         quizVC.title = "Quiz"
-        quizVC.tabBarItem = UITabBarItem(tabBarSystemItem: .bookmarks, tag: 1)
+        
+        quizVC.tabBarItem = UITabBarItem(title: "Quiz", image: UIImage(systemName: "pencil.circle"), selectedImage: nil)
 //        quizVC.coreData = self.coreDataStack.managedContext
         
         let navVC = UINavigationController(rootViewController: quizVC)
@@ -51,7 +52,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func createProduceListNC() -> UINavigationController {
         let addProduceVC = ProduceListViewController()
         addProduceVC.title = "Produce List"
-        addProduceVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 3)
+        addProduceVC.tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), selectedImage: nil)
         return UINavigationController(rootViewController: addProduceVC)
         
     }

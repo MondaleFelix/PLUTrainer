@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddProduceViewController: UIViewController {
+class AddProduceViewControllerOLD: UIViewController {
     
     
 //    let data = ProduceList.sharedInstance
@@ -73,7 +73,7 @@ class AddProduceViewController: UIViewController {
     
 }
     
-extension AddProduceViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+extension AddProduceViewControllerOLD: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
