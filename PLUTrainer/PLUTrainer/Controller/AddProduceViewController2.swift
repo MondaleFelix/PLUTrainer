@@ -34,13 +34,10 @@ class AddProduceViewController2: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           UIView.setAnimationsEnabled(true)
     
-       }
     
     func configure() {
+        navigationController?.navigationBar.prefersLargeTitles = false
         self.nameTextField.placeholder = "Produce Name"
         self.codeTextField.placeholder = "PLU Code"
         self.imagePickerButton.setTitle("Image Picker", for: .normal)

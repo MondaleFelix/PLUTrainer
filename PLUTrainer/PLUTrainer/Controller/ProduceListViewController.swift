@@ -21,6 +21,7 @@ class ProduceListViewController: UIViewController {
         super.viewDidLoad()
         configure()
         configureTable()
+        addBarButton()
 //        fetchProduce()
     }
     
@@ -46,10 +47,20 @@ class ProduceListViewController: UIViewController {
     }
     
     
+    private func addBarButton(){
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New", style: .done, target: self, action: #selector(newButtonPressed))
+    }
+    
+    
+    @objc func newButtonPressed(){
+        navigationController?.pushViewController(AddProduceViewController2(), animated: true)
+        
+    }
+    
+    
     // Sets View's UI
     private func configure(){
         title = "Produce"
-        navigationController?.navigationBar.prefersLargeTitles = true
         view.backgroundColor = .white
     }
     
@@ -65,8 +76,8 @@ class ProduceListViewController: UIViewController {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
     
