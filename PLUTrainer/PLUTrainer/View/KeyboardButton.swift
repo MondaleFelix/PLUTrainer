@@ -18,16 +18,8 @@ class KeyboardButton: UIButton {
 
     init(title: String) {
         super.init(frame: .zero)
-        
-        if title == "del"{
-            self.backgroundColor = .red
-        } else if title == "ent" {
-            self.backgroundColor = .brown
-        } else {
-            self.backgroundColor = .blue
-        }
-        setTitle(title, for: .normal)
         configure()
+        setButtonColor(title: title)
     }
     
     required init?(coder: NSCoder) {
@@ -38,9 +30,21 @@ class KeyboardButton: UIButton {
         layer.cornerRadius = 20
         translatesAutoresizingMaskIntoConstraints = false
         clipsToBounds = true
+
 //        addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
     }
 
+    private func setButtonColor(title: String) {
+        setTitle(title, for: .normal)
+        if title == "del"{
+            self.backgroundColor = .red
+        } else if title == "ent" {
+            self.backgroundColor = .brown
+        } else {
+            self.backgroundColor = .blue
+        }
+        
+    }
     
 //    @objc func returnButtonValue(_ sender: UIButton ) -> String {
 //        print(sender.currentTitle!)

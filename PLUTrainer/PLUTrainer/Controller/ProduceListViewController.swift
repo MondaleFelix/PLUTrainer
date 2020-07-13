@@ -10,35 +10,29 @@ import UIKit
 
 class ProduceListViewController: UIViewController {
     
+    let quizList = Quiz.sharedInstance
     var coreData = CoreDataStack()
     
-    var table: UITableView = {
-        let newTable = UITableView()
-        newTable.translatesAutoresizingMaskIntoConstraints = false
-        return newTable
-    }()
-    
     var produceList: [Produce] = []
-//    var names: [String] = ["ME", "you", "we"]
-    
-//    let data = ProduceList.sharedInstance
-    let quizList = Quiz.sharedInstance
-    
-//    required init?(coder aDecoder: NSCoder) {
-//        let data = ProduceList.sharedInstance
-//        produceList = data.pluList
-//        super.init(coder: aDecoder)
-//    }
-    
-    
+    let tableView = UITableView()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Produce List"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        view.backgroundColor = .white
+        configure()
         configureTable()
 //        fetchProduce()
     }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DispatchQueue.main.async {
+            self.fetchProduce()
+            self.tableView.reloadData()
+        }
+
+    }
+    
     
     private func fetchProduce() {
         self.coreData.fetchPersistedData { (fetchItemsResult) in
@@ -48,41 +42,34 @@ class ProduceListViewController: UIViewController {
             case .failure(let error):
                 print(error)
             }
-            // reload the collection view's data source to present the current data set to the user
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        DispatchQueue.main.async {
-            self.fetchProduce()
-            self.table.reloadData()
-        }
+    
+    // Sets View's UI
+    private func configure(){
+        title = "Produce"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        view.backgroundColor = .white
+    }
+    
+    
+    // Sets up Produce Table View
+    private func configureTable() {
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
 
-    }
-    
-    
-    // Protocol Methods
-    // Determines the number of cells to return
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return data.pluList.count
-//
-//    }
-    
-    func configureTable() {
-        self.view.addSubview(table)
-        self.table.delegate = self
-        self.table.dataSource = self
-        self.table.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-//        self.table.frame = view.bounds
         NSLayoutConstraint.activate([
-            self.table.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            self.table.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
-            self.table.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-            self.table.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
-
-
+            tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
         ])
     }
+    
     
 //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 //
@@ -133,12 +120,12 @@ extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource 
         let produceItem = produceList[indexPath.row]
         self.coreData.managedContext.delete(produceItem)
         self.produceList.remove(at: indexPath.row)
-        self.table.deleteRows(at: [indexPath], with: .fade)
+        self.tableView.deleteRows(at: [indexPath], with: .fade)
 //        data.deleteProduce(produceItem)
 //        quizList.deleteProduce(produceItem)
         self.coreData.saveContext()
         
-        table.reloadData()
+        self.tableView.reloadData()
     }
     
     

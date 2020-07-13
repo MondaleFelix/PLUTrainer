@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createProduceListNC() -> UINavigationController {
         let addProduceVC = ProduceListViewController()
-        addProduceVC.title = "Produce List"
+        addProduceVC.title = "Produce"
         addProduceVC.tabBarItem = UITabBarItem(title: "List", image: UIImage(systemName: "list.bullet"), selectedImage: nil)
         return UINavigationController(rootViewController: addProduceVC)
         
