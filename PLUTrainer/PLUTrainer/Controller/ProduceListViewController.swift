@@ -109,7 +109,7 @@ class ProduceListViewController: UIViewController {
 //    }
 }
 
-extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource {
+extension ProduceListViewController:  UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return produceList.count
     }
@@ -121,11 +121,6 @@ extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let produceDetailPage = ProduceDetailVC()
-        produceDetailPage.produceItem = produceList[indexPath.row]
-        self.present(produceDetailPage, animated: true, completion: nil)
-    }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         let produceItem = produceList[indexPath.row]
@@ -142,4 +137,13 @@ extension ProduceListViewController: UITableViewDelegate, UITableViewDataSource 
     
 }
 
+extension ProduceListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let produceDetailPage = ProduceDetailVC()
+        produceDetailPage.produceItem = produceList[indexPath.row]
+        self.present(produceDetailPage, animated: true, completion: nil)
+    }
+    
+}
 

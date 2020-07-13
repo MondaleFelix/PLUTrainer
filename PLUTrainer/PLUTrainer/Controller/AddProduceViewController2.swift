@@ -37,7 +37,6 @@ class AddProduceViewController2: UIViewController {
     
     
     func configure() {
-        navigationController?.navigationBar.prefersLargeTitles = false
         self.nameTextField.placeholder = "Produce Name"
         self.codeTextField.placeholder = "PLU Code"
         self.imagePickerButton.setTitle("Image Picker", for: .normal)

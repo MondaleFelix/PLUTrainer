@@ -18,7 +18,6 @@ class ProduceDetailVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         self.configure()
         self.configureStackView()
         self.configureProduceItem()
