@@ -123,8 +123,14 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         request.predicate = NSPredicate(format: "( name contains[cd] %@ )", produceName)
         do {
             let fetchResults = try coreDataStack.managedContext.fetch(request)
-            return fetchResults.first!.plu
-        } catch {}
+            if fetchResults == [] {
+                return nil
+            }else {
+                return fetchResults.first?.plu
+            }
+        } catch {
+            print("error fetching")
+        }
         
         return nil
     }
