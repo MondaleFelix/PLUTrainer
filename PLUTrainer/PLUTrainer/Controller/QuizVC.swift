@@ -14,20 +14,33 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     var quiz = Quiz.sharedInstance
     
     var stackView = UIStackView()
-    var foodImage = UIImageView()
+    var foodImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
     var foodLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 40.0)
         return label
     }()
-    var pluLabel = UILabel()
+    var pluLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 30 )
+        label.textColor = UIColor.gray
+        label.textAlignment = .center
+        return label
+    }()
     var keyboard = Keyboard()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchTest()
+        fetchProduce()
         configure()
         configureStackView()
         updateUI2()
@@ -35,6 +48,9 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }
     
     func getButtonLabel(buttonName: String) {
+        if pluLabel.text == "Guess PLU Code" {
+            pluLabel.text = ""
+        }
         if buttonName == "del" {
             pluLabel.text! = String(pluLabel.text!.dropLast())
         } else if buttonName == "ent" {
@@ -54,7 +70,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
 
     
     
-    private func fetchTest() {
+    private func fetchProduce() {
         self.coreData.fetchPersistedData { (fetchItemsResult) in
             switch fetchItemsResult {
             case let .success(items):
@@ -74,14 +90,14 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }
     
     private func configure(){
-        foodImage.contentMode = .scaleAspectFit
+//        foodImage.contentMode = .scaleAspectFit
 //        foodImage.backgroundColor = .red
-        foodImage.translatesAutoresizingMaskIntoConstraints = false
+//        foodImage.translatesAutoresizingMaskIntoConstraints = false
         
         keyboard.translatesAutoresizingMaskIntoConstraints = false
         
-        pluLabel.translatesAutoresizingMaskIntoConstraints = false
-        pluLabel.textAlignment = .center
+//        pluLabel.translatesAutoresizingMaskIntoConstraints = false
+//        pluLabel.textAlignment = .center
         
         
         
@@ -105,19 +121,25 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     func configureStackView() {
         view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.spacing = 20
+        stackView.spacing = 40
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillProportionally
-        
         
         stackView.addArrangedSubview(foodImage)
         stackView.addArrangedSubview(foodLabel)
         stackView.addArrangedSubview(pluLabel)
         stackView.addArrangedSubview(keyboard)
+        
+        NSLayoutConstraint.activate([
+            foodImage.widthAnchor.constraint(equalToConstant: 220),
+            foodImage.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
+        
         NSLayoutConstraint.activate(
             [stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
              stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 0),
+             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
              stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
              
         ])
@@ -166,7 +188,8 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         
         let produce = quiz.getFood()
         pluLabel.text = quiz.getUserInput()
-        foodLabel.text = produce.plu
+        foodLabel.text = produce.name
+        pluLabel.text = "Guess PLU Code"
         foodImage.image = produce.image
         self.view.backgroundColor = .white
     }
