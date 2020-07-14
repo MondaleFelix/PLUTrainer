@@ -7,10 +7,13 @@
 //
 
 import UIKit
+import CoreData
 import CoreML
 import Vision
 
 class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    let coreDataStack = CoreDataStack()
     
     let produceImage: UIImageView = {
         let image = UIImageView()
@@ -33,7 +36,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     @objc func cameraButtonTapped(){
         imagePicker.delegate = self
-        imagePicker.sourceType = .camera
+        imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = false
         present(imagePicker, animated: true, completion: nil)
         
@@ -59,8 +62,71 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             guard let ciImage = CIImage(image: image) else {
                 fatalError("couldn't convert uiimage to CIImage")
             }
-            //        detect(image: ciImage)
+            detect(image: ciImage)
         }
+    }
+    
+    func detect(image: CIImage) {
+        
+        // Load the ML model through its generated class
+        guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
+            fatalError("can't load ML model")
+        }
+        
+        let request = VNCoreMLRequest(model: model) { request, error in
+            guard let results = request.results as? [VNClassificationObservation],
+                let topResult = results.first
+                else {
+                    fatalError("unexpected result type from VNCoreMLRequest")
+            }
+            
+            let formatter = NumberFormatter()
+            formatter.maximumFractionDigits = 1
+            let confidencePercentage = formatter.string(from: results.first!.confidence * 100 as NSNumber)!
+            
+            self.alert(name: topResult.identifier.capitalized, confidence: confidencePercentage)
+            
+            self.navigationController?.navigationBar.barTintColor = UIColor.green
+            self.navigationItem.title = "\(confidencePercentage)% \(results.first!.identifier.capitalized)"
+        }
+        
+        let handler = VNImageRequestHandler(ciImage: image)
+        
+        do {
+            try handler.perform([request])
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    func alert(name: String, confidence: String) {
+        
+        let plu = getPLUCodeFromCoreData(for: name)
+        var pluCode = ""
+        if plu != nil {
+            pluCode = plu!
+        } else {
+            pluCode = "Not found in database"
+        }
+        
+        let alert = UIAlertController(title: "Top ML Match", message: "\(name) \(confidence)% \n PLU: \(pluCode)", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func getPLUCodeFromCoreData(for produceName: String) -> String? {
+        
+        let request: NSFetchRequest<Produce> = Produce.fetchRequest()
+        
+        
+        request.predicate = NSPredicate(format: "( name contains[cd] %@ )", produceName)
+        do {
+            let fetchResults = try coreDataStack.managedContext.fetch(request)
+            return fetchResults.first!.plu
+        } catch {}
+        
+        return nil
     }
     
     

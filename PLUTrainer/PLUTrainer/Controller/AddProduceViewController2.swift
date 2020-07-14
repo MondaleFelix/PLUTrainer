@@ -107,10 +107,6 @@ class AddProduceViewController2: UIViewController {
             self.saveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
             self.saveButton.topAnchor.constraint(equalTo: codeTextField.bottomAnchor, constant: 60),
             self.saveButton.widthAnchor.constraint(equalToConstant: 180)
-                      
-            
-
-
             
         ])
         
@@ -148,15 +144,10 @@ class AddProduceViewController2: UIViewController {
         newProduce.plu = self.codeTextField.text!
         newProduce.image = self.produceImageView.image?.pngData()
         self.coreDataStack.saveContext()
-        self.alert()
-        self.resetUI()
+//        self.resetUI()
+        self.navigationController?.popViewController(animated: true)
     }
     
-    func alert() {
-        let alert = UIAlertController(title: "Saved", message: "Produce saved successfully!", preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-    }
     
     func resetUI() {
         self.nameTextField.text = ""
