@@ -15,7 +15,12 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     
     var stackView = UIStackView()
     var foodImage = UIImageView()
-    var foodLabel = UILabel()
+    var foodLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
     var pluLabel = UILabel()
     var keyboard = Keyboard()
     
@@ -53,10 +58,9 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         self.coreData.fetchPersistedData { (fetchItemsResult) in
             switch fetchItemsResult {
             case let .success(items):
-                print(items)
                 for item in items {
-//                    var newItem = ProduceOLD(image: UIImage(data: item.image!)!, name: item.name, plu: item.plu)
-//                    self.quiz.quiz.append(newItem)
+                    var newItem = ProduceOLD(image: UIImage(data: item.image!)!, name: item.name, plu: item.plu)
+                    self.quiz.quiz.append(newItem)
                 }
             case .failure(let error):
                 print(error)
@@ -71,7 +75,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     
     private func configure(){
         foodImage.contentMode = .scaleAspectFit
-        foodImage.backgroundColor = .red
+//        foodImage.backgroundColor = .red
         foodImage.translatesAutoresizingMaskIntoConstraints = false
         
         keyboard.translatesAutoresizingMaskIntoConstraints = false
@@ -79,8 +83,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         pluLabel.translatesAutoresizingMaskIntoConstraints = false
         pluLabel.textAlignment = .center
         
-        foodLabel.translatesAutoresizingMaskIntoConstraints = false
-        foodLabel.textAlignment = .center
+        
         
 
     }
@@ -102,9 +105,9 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     func configureStackView() {
         view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 20
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         
         
         stackView.addArrangedSubview(foodImage)

@@ -23,7 +23,7 @@ class CoreDataStack {
     }()
     lazy var managedContext: NSManagedObjectContext = {
         // get location of stored core data file
-        print(self.storeContainer.persistentStoreDescriptions.first?.url)
+//        print(self.storeContainer.persistentStoreDescriptions.first?.url)
         return self.storeContainer.viewContext
     }()
     

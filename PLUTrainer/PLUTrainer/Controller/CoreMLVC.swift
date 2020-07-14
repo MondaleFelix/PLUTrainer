@@ -1,0 +1,67 @@
+//
+//  CoreMLVC.swift
+//  PLUTrainer
+//
+//  Created by Cao Mai on 7/9/20.
+//  Copyright © 2020 Mondale. All rights reserved.
+//
+
+import UIKit
+import CoreML
+import Vision
+
+class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    let produceImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    let imagePicker = UIImagePickerController()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "CORE ML"
+        // Do any additional setup after loading the view.
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
+        self.navigationItem.rightBarButtonItem = barButtonItem
+        
+        setupImage()
+    }
+    
+    @objc func cameraButtonTapped(){
+        imagePicker.delegate = self
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = false
+        present(imagePicker, animated: true, completion: nil)
+        
+    }
+    
+    func setupImage() {
+        view.addSubview(produceImage)
+        
+        NSLayoutConstraint.activate([
+            produceImage.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            produceImage.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            produceImage.topAnchor.constraint(equalTo: self.view.topAnchor),
+            produceImage.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+        ])
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let image = info[.originalImage] as? UIImage {
+            
+            produceImage.image = image
+            imagePicker.dismiss(animated: true, completion: nil)
+            guard let ciImage = CIImage(image: image) else {
+                fatalError("couldn't convert uiimage to CIImage")
+            }
+            //        detect(image: ciImage)
+        }
+    }
+    
+    
+}
