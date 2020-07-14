@@ -45,6 +45,12 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         configureStackView()
         updateUI2()
         keyboard.delegate = self
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Refresh", style: .done, target: self, action: #selector(refreshButtonPressed))
+    }
+    
+    @objc func refreshButtonPressed() {
+        quiz.quiz = []
+        self.fetchProduce()
     }
     
     func getButtonLabel(buttonName: String) {
@@ -58,8 +64,11 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
             
             if correctAnswer {
                 self.view.backgroundColor = .green
+                self.pluLabel.text = "Correct!"
             } else {
                 self.view.backgroundColor = .red
+                self.pluLabel.text = "Incorrect!"
+
             }
             Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
         } else {
@@ -75,13 +84,12 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
             switch fetchItemsResult {
             case let .success(items):
                 for item in items {
-                    var newItem = ProduceOLD(image: UIImage(data: item.image!)!, name: item.name, plu: item.plu)
+                    let newItem = ProduceOLD(image: UIImage(data: item.image!)!, name: item.name, plu: item.plu)
                     self.quiz.quiz.append(newItem)
                 }
             case .failure(let error):
                 print(error)
             }
-            // reload the collection view's data source to present the current data set to the user
         }
     }
     
