@@ -43,7 +43,7 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
             Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
         } else {
             pluLabel.text! += buttonName
-        }
+        } 
     }
     
 
