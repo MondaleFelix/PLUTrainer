@@ -26,10 +26,6 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "CORE ML"
-        // Do any additional setup after loading the view.
-        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
-        self.navigationItem.rightBarButtonItem = barButtonItem
         
         setupImage()
     }
@@ -42,7 +38,13 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
     }
     
-    func setupImage() {
+    private func configureNavBar() {
+        self.title = "CORE ML"
+        let barButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
+        self.navigationItem.rightBarButtonItem = barButtonItem
+    }
+    
+    private func setupImage() {
         view.addSubview(produceImage)
         
         NSLayoutConstraint.activate([
@@ -53,7 +55,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         ])
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[.originalImage] as? UIImage {
             
@@ -66,7 +68,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
-    func detect(image: CIImage) {
+    private func detect(image: CIImage) {
         
         // Load the ML model through its generated class
         guard let model = try? VNCoreMLModel(for: Inceptionv3().model) else {
@@ -84,7 +86,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
             formatter.maximumFractionDigits = 1
             let confidencePercentage = formatter.string(from: results.first!.confidence * 100 as NSNumber)!
             
-            self.alert(name: topResult.identifier.capitalized, confidence: confidencePercentage)
+            self.imageResultAlert(name: topResult.identifier.capitalized, confidence: confidencePercentage)
             
             self.navigationController?.navigationBar.barTintColor = UIColor.green
             self.navigationItem.title = "\(confidencePercentage)% \(results.first!.identifier.capitalized)"
@@ -100,8 +102,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         }
     }
     
-    func alert(name: String, confidence: String) {
-        
+    private func imageResultAlert(name: String, confidence: String) {
         let plu = getPLUCodeFromCoreData(for: name)
         var pluCode = ""
         if plu != nil {
@@ -115,11 +116,8 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         self.present(alert, animated: true, completion: nil)
     }
     
-    func getPLUCodeFromCoreData(for produceName: String) -> String? {
-        
+    private func getPLUCodeFromCoreData(for produceName: String) -> String? {
         let request: NSFetchRequest<Produce> = Produce.fetchRequest()
-        
-        
         request.predicate = NSPredicate(format: "( name contains[cd] %@ )", produceName)
         do {
             let fetchResults = try coreDataStack.managedContext.fetch(request)
