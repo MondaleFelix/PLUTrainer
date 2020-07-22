@@ -26,7 +26,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        configureNavBar()
         setupImage()
     }
     
@@ -38,7 +38,7 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
         
     }
     
-    private func configureNavBar() {
+    func configureNavBar() {
         self.title = "CORE ML"
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonTapped))
         self.navigationItem.rightBarButtonItem = barButtonItem
@@ -58,7 +58,6 @@ class CoreMLVC: UIViewController, UIImagePickerControllerDelegate, UINavigationC
     internal func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         if let image = info[.originalImage] as? UIImage {
-            
             produceImage.image = image
             imagePicker.dismiss(animated: true, completion: nil)
             guard let ciImage = CIImage(image: image) else {

@@ -37,7 +37,6 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     }()
     var keyboard = Keyboard()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchProduce()
@@ -51,6 +50,9 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
     @objc func refreshButtonPressed() {
         quiz.quiz = []
         self.fetchProduce()
+        let alert = UIAlertController(title: "Quiz Refreshed", message: "Quiz has been reset", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     func getButtonLabel(buttonName: String) {
@@ -68,16 +70,12 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
             } else {
                 self.view.backgroundColor = .red
                 self.pluLabel.text = "Incorrect!"
-
             }
             Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(updateUI), userInfo: nil, repeats:  false)
         } else {
             pluLabel.text! += buttonName
         }
     }
-    
-
-    
     
     private func fetchProduce() {
         self.coreData.fetchPersistedData { (fetchItemsResult) in
@@ -133,20 +131,20 @@ class QuizVC: UIViewController, UITextFieldDelegate, ReturnButtonNameDelegate {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillProportionally
         
+        NSLayoutConstraint.activate([
+            foodImage.widthAnchor.constraint(equalToConstant: self.view.frame.width),
+            foodImage.heightAnchor.constraint(equalToConstant: 220)
+        ])
+        
         stackView.addArrangedSubview(foodImage)
         stackView.addArrangedSubview(foodLabel)
         stackView.addArrangedSubview(pluLabel)
         stackView.addArrangedSubview(keyboard)
+
         
         NSLayoutConstraint.activate([
-            foodImage.widthAnchor.constraint(equalToConstant: 220),
-            foodImage.heightAnchor.constraint(equalToConstant: 220)
-        ])
-        
-        
-        NSLayoutConstraint.activate(
-            [stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+//             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
              stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 10),
              stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20),
              
