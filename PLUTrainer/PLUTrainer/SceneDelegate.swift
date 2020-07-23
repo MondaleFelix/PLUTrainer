@@ -43,7 +43,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createAddProduceNC() -> UINavigationController {
         let addProduceVC = CoreMLVC()
-        addProduceVC.title = "Add Produce"
+//        addProduceVC.title = "Add Produce"
         addProduceVC.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 2)
         return UINavigationController(rootViewController: addProduceVC)
         

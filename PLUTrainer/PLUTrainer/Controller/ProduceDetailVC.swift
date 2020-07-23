@@ -72,7 +72,7 @@ class ProduceDetailVC: UIViewController {
         stackView.addArrangedSubview(pluLabel)
         
         NSLayoutConstraint.activate([
-            foodImage.widthAnchor.constraint(equalToConstant: 320),
+            foodImage.widthAnchor.constraint(equalToConstant: self.view.frame.width),
             foodImage.heightAnchor.constraint(equalToConstant: 320)
         ])
         
@@ -80,7 +80,7 @@ class ProduceDetailVC: UIViewController {
 //             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
              stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 40),
              stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
-             stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+//             stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
 
              stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -80)
         ])

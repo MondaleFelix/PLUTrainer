@@ -19,8 +19,10 @@ class AddProduceViewController2: UIViewController {
         //        image.layer.borderColor = UIColor.color(red: 123, green: 12, blue: 12)?.cgColor
         //        image.layer.borderWidth = 5
 //        image.layer.cornerRadius = 75
-        image.layer.masksToBounds = true
-        image.backgroundColor = .gray
+//        image.layer.masksToBounds = true
+//        image.backgroundColor = .gray
+        image.image = UIImage(named: "no item image")
+
         
         return image
     }()
@@ -75,38 +77,41 @@ class AddProduceViewController2: UIViewController {
     
     
     func configure() {
-//        self.nameTextField.placeholder = "Produce Name"
-//        self.codeTextField.placeholder = "PLU Code"
+//        nameTextField.placeholder = "Produce Name"
+//        codeTextField.placeholder = "PLU Code"
 
 
-        self.imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
-        self.saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
+//        imagePickerButton.addTarget(self, action: #selector(selectImagePressed), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(saveButtonPressed), for: .touchUpInside)
         
-        self.view.addSubview(produceImageView)
-        self.view.addSubview(imagePickerButton)
-        self.view.addSubview(nameTextField)
-        self.view.addSubview(codeTextField)
-        self.view.addSubview(saveButton)
+        view.addSubview(produceImageView)
+//        view.addSubview(imagePickerButton)
+        view.addSubview(nameTextField)
+        view.addSubview(codeTextField)
+        view.addSubview(saveButton)
+        
+        let singleTap = UITapGestureRecognizer(target: self, action: #selector(selectImagePressed))
+        produceImageView.addGestureRecognizer(singleTap)
         
         NSLayoutConstraint.activate([
-            self.produceImageView.widthAnchor.constraint(equalToConstant: 200),
-            self.produceImageView.heightAnchor.constraint(equalToConstant: 200),
-            self.produceImageView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            self.produceImageView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)
+            produceImageView.widthAnchor.constraint(equalToConstant: 200),
+            produceImageView.heightAnchor.constraint(equalToConstant: 200),
+            produceImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            produceImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
 
         ])
         
         NSLayoutConstraint.activate([
-            self.imagePickerButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.imagePickerButton.topAnchor.constraint(equalTo: produceImageView.bottomAnchor, constant: 30),
-            self.imagePickerButton.widthAnchor.constraint(equalToConstant: 120),
-            self.nameTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.nameTextField.topAnchor.constraint(equalTo: imagePickerButton.bottomAnchor, constant: 30),
-            self.codeTextField.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.codeTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 30),
-            self.saveButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.saveButton.topAnchor.constraint(equalTo: codeTextField.bottomAnchor, constant: 60),
-            self.saveButton.widthAnchor.constraint(equalToConstant: 180)
+//            imagePickerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            imagePickerButton.topAnchor.constraint(equalTo: produceImageView.bottomAnchor, constant: 30),
+//            imagePickerButton.widthAnchor.constraint(equalToConstant: 120),
+            nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            nameTextField.topAnchor.constraint(equalTo: produceImageView.bottomAnchor, constant: 30),
+            codeTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            codeTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 30),
+            saveButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            saveButton.topAnchor.constraint(equalTo: codeTextField.bottomAnchor, constant: 60),
+            saveButton.widthAnchor.constraint(equalToConstant: 180)
             
         ])
         
@@ -139,19 +144,19 @@ class AddProduceViewController2: UIViewController {
     }
     
     @objc func saveButtonPressed() {
-        let newProduce = Produce(context: self.coreDataStack.managedContext)
-        newProduce.name = self.nameTextField.text!
-        newProduce.plu = self.codeTextField.text!
-        newProduce.image = self.produceImageView.image?.pngData()
-        self.coreDataStack.saveContext()
-//        self.resetUI()
-        self.navigationController?.popViewController(animated: true)
+        let newProduce = Produce(context: coreDataStack.managedContext)
+        newProduce.name = nameTextField.text!
+        newProduce.plu = codeTextField.text!
+        newProduce.image = produceImageView.image?.pngData()
+        coreDataStack.saveContext()
+//        resetUI()
+        navigationController?.popViewController(animated: true)
     }
     
     
     func resetUI() {
-        self.nameTextField.text = ""
-        self.codeTextField.text = ""
+        nameTextField.text = ""
+        codeTextField.text = ""
     }
     
 }
