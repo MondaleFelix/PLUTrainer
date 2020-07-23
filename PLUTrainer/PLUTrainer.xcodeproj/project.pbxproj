@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		2C09AAD724861B02003D6BE3 /* AddProduceViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */; };
+		2C1B8FE824BD736400BDFD7D /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B8FE724BD736400BDFD7D /* UITextField.swift */; };
+		2C1B8FEC24BD7D3000BDFD7D /* Inceptionv3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 2C1B8FEB24BD7D3000BDFD7D /* Inceptionv3.mlmodel */; };
 		2C35A51E24A1B30000BF07E8 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2C35A51D24A1B30000BF07E8 /* README.md */; };
+		2C49921724B7E712008DE4BA /* CoreMLVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C49921624B7E712008DE4BA /* CoreMLVC.swift */; };
 		2C9BB4BE24A993F200936C1C /* ProduceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C9BB4BD24A993F200936C1C /* ProduceDetailVC.swift */; };
 		2CAEE6E424A8426A0091F0AA /* Produce.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEE6E224A8426A0091F0AA /* Produce.xcdatamodeld */; };
 		2CAEE6EE24A846980091F0AA /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CAEE6ED24A846980091F0AA /* CoreDataStack.swift */; };
@@ -31,7 +34,10 @@
 
 /* Begin PBXFileReference section */
 		2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProduceViewController2.swift; sourceTree = "<group>"; };
+		2C1B8FE724BD736400BDFD7D /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		2C1B8FEB24BD7D3000BDFD7D /* Inceptionv3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Inceptionv3.mlmodel; sourceTree = "<group>"; };
 		2C35A51D24A1B30000BF07E8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		2C49921624B7E712008DE4BA /* CoreMLVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLVC.swift; sourceTree = "<group>"; };
 		2C9BB4BD24A993F200936C1C /* ProduceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDetailVC.swift; sourceTree = "<group>"; };
 		2CAEE6E324A8426A0091F0AA /* Produce.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Produce.xcdatamodel; sourceTree = "<group>"; };
 		2CAEE6ED24A846980091F0AA /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -65,6 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C1B8FE924BD736900BDFD7D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B8FE724BD736400BDFD7D /* UITextField.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2C1B8FEA24BD7D1E00BDFD7D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2C1B8FEB24BD7D3000BDFD7D /* Inceptionv3.mlmodel */,
+				6F62B2EA23C3E65C00E88367 /* Assets.xcassets */,
+				6F62B2EC23C3E65C00E88367 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6F4DACA423C4C35300AC99B1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +121,8 @@
 				2C9BB4BD24A993F200936C1C /* ProduceDetailVC.swift */,
 				6FBEEA9023C904C300F042D0 /* AddProduceViewControllerOLD.swift */,
 				2C09AAD624861B02003D6BE3 /* AddProduceViewController2.swift */,
+				2C49921624B7E712008DE4BA /* CoreMLVC.swift */,
+				2C1B8FE924BD736900BDFD7D /* Extension */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -126,8 +152,7 @@
 				6F4DACA423C4C35300AC99B1 /* Model */,
 				6F4DACA523C4C36600AC99B1 /* View */,
 				6F4DACA623C4C36F00AC99B1 /* Controller */,
-				6F62B2EA23C3E65C00E88367 /* Assets.xcassets */,
-				6F62B2EC23C3E65C00E88367 /* LaunchScreen.storyboard */,
+				2C1B8FEA24BD7D1E00BDFD7D /* Resources */,
 				6F62B2EF23C3E65C00E88367 /* Info.plist */,
 			);
 			path = PLUTrainer;
@@ -213,8 +238,11 @@
 				6F3588642488FA3400171A7D /* Keyboard.swift in Sources */,
 				6FBEEA8F23C7657200F042D0 /* ProduceListViewController.swift in Sources */,
 				6F4AD8C823D8FA3B00B94009 /* ProduceList.swift in Sources */,
+				2C1B8FEC24BD7D3000BDFD7D /* Inceptionv3.mlmodel in Sources */,
 				6FBEEA9123C904C300F042D0 /* AddProduceViewControllerOLD.swift in Sources */,
 				6F68554023C54EE600DE6957 /* Quiz.swift in Sources */,
+				2C49921724B7E712008DE4BA /* CoreMLVC.swift in Sources */,
+				2C1B8FE824BD736400BDFD7D /* UITextField.swift in Sources */,
 				6F62B2E223C3E65600E88367 /* AppDelegate.swift in Sources */,
 				6F68553E23C54E0900DE6957 /* Produce.swift in Sources */,
 				2CAEE71924A867270091F0AA /* Produce+CoreDataProperties.swift in Sources */,

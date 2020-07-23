@@ -12,15 +12,35 @@ class ProduceDetailVC: UIViewController {
     
     var produceItem: Produce!
     var stackView = UIStackView()
-    var foodImage = UIImageView()
-    var foodLabel = UILabel()
-    var pluLabel = UILabel()
+    
+    var foodImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    var foodLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 40.0)
+        return label
+    }()
+    var pluLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.systemFont(ofSize: 30 )
+        label.textAlignment = .center
+        label.textColor = UIColor.gray
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
         self.configureStackView()
         self.configureProduceItem()
+        self.view.backgroundColor = .white
     }
     
     private func configure(){
@@ -29,38 +49,47 @@ class ProduceDetailVC: UIViewController {
         self.view.addSubview(pluLabel)
         
             
-        pluLabel.translatesAutoresizingMaskIntoConstraints = false
-        pluLabel.textAlignment = .center
-        
-        foodLabel.translatesAutoresizingMaskIntoConstraints = false
-        foodLabel.textAlignment = .center
-        
-        foodImage.contentMode = .scaleAspectFit
-        foodImage.translatesAutoresizingMaskIntoConstraints = false
+//        pluLabel.translatesAutoresizingMaskIntoConstraints = false
+//        pluLabel.textAlignment = .center
+//
+//        foodLabel.translatesAutoresizingMaskIntoConstraints = false
+//        foodLabel.textAlignment = .center
+//
+//        foodImage.contentMode = .scaleAspectFit
+//        foodImage.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func configureStackView() {
         self.view.addSubview(stackView)
         stackView.axis = .vertical
-        stackView.spacing = 2
+        stackView.spacing = 40
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         
         
         stackView.addArrangedSubview(foodImage)
         stackView.addArrangedSubview(foodLabel)
         stackView.addArrangedSubview(pluLabel)
-        NSLayoutConstraint.activate(
-            [stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 2),
-             stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: 0)
+        
+        NSLayoutConstraint.activate([
+            foodImage.widthAnchor.constraint(equalToConstant: 320),
+            foodImage.heightAnchor.constraint(equalToConstant: 320)
+        ])
+        
+        NSLayoutConstraint.activate([
+//             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+             stackView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 40),
+             stackView.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
+             stackView.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+
+             stackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -80)
         ])
     }
     
     func configureProduceItem() {
         self.foodImage.image = UIImage(data: produceItem.image!)
         self.foodLabel.text = produceItem.name
-        self.pluLabel.text = produceItem.plu
+        self.pluLabel.text = "PLU: \(produceItem.plu)"
     }
     
 

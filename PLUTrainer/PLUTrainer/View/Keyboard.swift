@@ -150,7 +150,6 @@ class Keyboard: UIView {
     }
     
     @objc func returnButtonValue(_ sender: UIButton ) {
-        print(sender.currentTitle!)
         sender.flash()
         delegate.getButtonLabel(buttonName: sender.currentTitle!)
     }
