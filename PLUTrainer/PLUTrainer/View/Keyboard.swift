@@ -9,7 +9,7 @@
 import UIKit
 
 protocol ReturnButtonNameDelegate {
-    func getButtonLabel(buttonName: String)
+    func getButtonLabel(buttonDigits: String)
 }
 
 class Keyboard: UIView {
@@ -22,9 +22,11 @@ class Keyboard: UIView {
     var secondRow = UIStackView()
     var thirdRow = UIStackView()
     var fourthRow = UIStackView()
-        
+    var textDigits = ""
+    
+    
     var delegate: ReturnButtonNameDelegate!
-
+    
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -57,7 +59,7 @@ class Keyboard: UIView {
             stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
-        
+            
         ])
         
     }
@@ -149,10 +151,18 @@ class Keyboard: UIView {
     }
     
     @objc func returnButtonValue(_ sender: UIButton ) {
-//        print(sender.currentTitle!)
-        delegate.getButtonLabel(buttonName: sender.currentTitle!)
+        if sender.currentTitle! == "del" {
+            textDigits = String(textDigits.dropLast())
+        }  else if sender.currentTitle == "ent"{
+            delegate.getButtonLabel(buttonDigits: "ent")
+            textDigits = ""
+        }else  {
+            textDigits += sender.currentTitle!
+        }
+        
+        delegate.getButtonLabel(buttonDigits: textDigits)
         sender.flash()
     }
     
-
+    
 }
