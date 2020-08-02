@@ -19,7 +19,7 @@ class KeyboardButton: UIButton {
     init(title: String) {
         super.init(frame: .zero)
         configure()
-        setButtonColor(title: title)
+        setTitle(title, for: .normal)
     }
     
     required init?(coder: NSCoder) {
@@ -27,31 +27,27 @@ class KeyboardButton: UIButton {
     }
     
     private func configure(){
-        layer.cornerRadius = 20
         translatesAutoresizingMaskIntoConstraints = false
-        clipsToBounds = true
-
-//        addTarget(self, action: #selector(returnButtonValue), for: .touchUpInside)
+        backgroundColor = .systemGray6
+        setTitleColor(.black, for: .normal)
+        titleLabel?.font = UIFont(name: "SFProText-Light", size: 24)
+//        addTarget(self, action: #selector(returnTitle), for: .touchUpInside)
     }
 
-    private func setButtonColor(title: String) {
-        setTitle(title, for: .normal)
-        if title == "del"{
-            self.backgroundColor = .red
-        } else if title == "ent" {
-            self.backgroundColor = .brown
-        } else {
-            self.backgroundColor = .blue
-        }
-        
-    }
-    
-//    @objc func returnButtonValue(_ sender: UIButton ) -> String {
-//        print(sender.currentTitle!)
-//        sender.flash()
-//        return sender.currentTitle!
-//
+//    @objc func returnTitle() -> String{
+//        let quizVC = QuizVC()
+//        
+//        guard let titleLabel = titleLabel else{
+//            return "No Title"
+//        }
+//        print(titleLabel.text ?? "No Value")
+//        quizVC.userInput = titleLabel.text ?? "No Value"
+//        print(quizVC.userInput)
+//        return titleLabel.text ?? "No Value"
+//        
+//        
 //    }
+    
 }
 
 
@@ -63,7 +59,6 @@ extension UIButton {
         flash.toValue = 0.1
         flash.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
         flash.autoreverses = true
-//        flash.repeatCount = 3
         layer.add(flash, forKey: nil)
     }
 }

@@ -22,9 +22,9 @@ class Keyboard: UIView {
     var secondRow = UIStackView()
     var thirdRow = UIStackView()
     var fourthRow = UIStackView()
-    
+        
     var delegate: ReturnButtonNameDelegate!
-    
+
     
     override init(frame: CGRect) {
         super.init(frame:frame)
@@ -49,7 +49,6 @@ class Keyboard: UIView {
         stackView.addArrangedSubview(fourthRow)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.spacing = CGFloat(10.0)
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         
@@ -150,7 +149,10 @@ class Keyboard: UIView {
     }
     
     @objc func returnButtonValue(_ sender: UIButton ) {
-        sender.flash()
+//        print(sender.currentTitle!)
         delegate.getButtonLabel(buttonName: sender.currentTitle!)
+        sender.flash()
     }
+    
+
 }

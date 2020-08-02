@@ -22,7 +22,6 @@ class ProduceListViewController: UIViewController {
         configure()
         configureTable()
         addBarButton()
-//        fetchProduce()
     }
     
     
@@ -69,9 +68,13 @@ class ProduceListViewController: UIViewController {
     private func configureTable() {
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ProduceTableViewCell.self, forCellReuseIdentifier: ProduceTableViewCell.reuseID)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.rowHeight = 75
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.allowsSelectionDuringEditing = true
+
 
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
@@ -82,31 +85,6 @@ class ProduceListViewController: UIViewController {
     }
     
     
-//    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "ProduceItem", for: indexPath)
-//        let item = data.pluList[indexPath.row]
-//
-//
-//        let namelabel = cell.viewWithTag(1000) as! UILabel
-//        namelabel.text = item.name
-//
-//        let codeLabel = cell.viewWithTag(1001) as! UILabel
-//        codeLabel.text = item.plu
-//
-//        return cell
-//    }
-
-    // Enables swipe deletion 
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//
-//        let produceItem = data.pluList[indexPath.row]
-//
-//        data.deleteProduce(produceItem)
-//        quizList.deleteProduce(produceItem)
-//        tableView.reloadData()
-//
-//    }
 }
 
 extension ProduceListViewController:  UITableViewDataSource {
@@ -115,9 +93,10 @@ extension ProduceListViewController:  UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProduceTableViewCell.reuseID, for: indexPath) as! ProduceTableViewCell
         let produce = produceList[indexPath.row]
-        cell.textLabel!.text = produce.name
+        cell.produceLabel.text = produce.name
+        cell.pluCode.text = produce.plu
         return cell
     }
     
